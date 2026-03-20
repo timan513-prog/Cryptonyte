@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Globe, Layers, Target, BookOpen, Download, ShoppingCart, Menu, X, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
+import { Link} from 'react-router-dom';
+import { ArrowLeft, ArrowRight, BookOpen, Download, ShoppingCart, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 
 /* ─────────────────────── PARTICLE CANVAS ─────────────────────── */
@@ -32,8 +32,7 @@ const ParticleField: React.FC = () => {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 2 + 0.5,
         opacity: Math.random() * 0.5 + 0.1,
-        pulse: Math.random() * Math.PI * 2,
-      });
+        pulse: Math.random() * Math.PI * 2 });
     }
 
     const animate = () => {
@@ -110,7 +109,7 @@ const TiltCard: React.FC<{ children: React.ReactNode; className?: string; glowCo
   const cardRef = useRef<HTMLDivElement>(null);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const smoothRotateX = useSpring(rotateX, { stiffness: 150, damping: 20 });
+  const smoothRotateX = useSpring(rotate{ stiffness: 150, damping: 20 });
   const smoothRotateY = useSpring(rotateY, { stiffness: 150, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -137,8 +136,7 @@ const TiltCard: React.FC<{ children: React.ReactNode; className?: string; glowCo
       style={{
         rotateX: smoothRotateX,
         rotateY: smoothRotateY,
-        perspective: 1200,
-      }}
+        perspective: 1200 }}
       className={`relative ${className}`}
     >
       {children}
@@ -188,190 +186,6 @@ const AnimatedCounter: React.FC<{ value: string; label: string; delay?: number }
 };
 
 /* ─────────────────────── NAVBAR (unchanged) ─────────────────────── */
-const NavBar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const onScrollLink = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    if (location.pathname !== "/") {
-      navigate("/", { replace: false });
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  return (
-    <motion.div
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <div className={`backdrop-blur-xl bg-black/60 border border-amber-500/30 shadow-2xl rounded-full px-6 py-3 transition-all duration-500 ${
-        isScrolled ? 'bg-black/80 shadow-3xl' : 'bg-black/40'
-      }`}>
-        <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-8">
-          <Link to="/" className="flex items-center gap-3 group">
-            <span className="font-bold text-lg bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-              Cryptonyte
-            </span>
-          </Link>
-
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {[
-              { label: 'HOME', href: '#home', id: 'home' },
-              { label: 'GUIDES', href: '/guides', id: 'guides' },
-              { label: 'LEARN & EARN', href: '/learn-and-earn', id: 'learn-and-earn' },
-              { label: 'ABOUT', href: '#about', id: 'about' },
-              { label: 'CONTACT', href: '#contact', id: 'contact' },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={item.href.startsWith('/') ? undefined : onScrollLink(item.id)}
-                className="px-2 py-2 rounded-full text-xs font-medium text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10 transition-all duration-300 relative group whitespace-nowrap inline-flex items-center"
-              >
-                {item.label}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/0 to-yellow-400/0 group-hover:from-amber-400/20 group-hover:to-yellow-400/20 transition-all duration-300"></div>
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <Link
-              to="/what-is-crypto"
-              className="hidden sm:flex group relative overflow-hidden px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 flex-shrink-0"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Learn More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"/>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
-
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors duration-300"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5 text-amber-400" />}
-            </button>
-          </div>
-        </div>
-
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden absolute top-full left-4 right-4 mt-2 z-50"
-          >
-            <div className="backdrop-blur-xl bg-black/90 border border-amber-500/30 shadow-2xl rounded-2xl p-4">
-              <nav className="flex flex-col gap-2">
-                {[
-                  { label: 'HOME', href: '#home', id: 'home' },
-                  { label: 'GUIDES', href: '/guides', id: 'guides' },
-                  { label: 'LEARN & EARN', href: '/learn-and-earn', id: 'learn-and-earn' },
-                  { label: 'ABOUT', href: '#about', id: 'about' },
-                  { label: 'CONTACT', href: '#contact', id: 'contact' },
-                ].map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={item.href.startsWith('/') ? () => setIsMobileMenuOpen(false) : onScrollLink(item.id)}
-                    className="px-4 py-3 rounded-xl text-sm font-medium text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10 transition-all duration-300 text-center"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <div className="border-t border-amber-500/20 my-2"></div>
-                <Link
-                  to="/what-is-crypto"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="group relative overflow-hidden px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 text-center"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"/>
-                  </span>
-                </Link>
-              </nav>
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </motion.div>
-  );
-};
-
-/* ─────────────────────── FOOTER (unchanged) ─────────────────────── */
-const Footer = () => (
-  <footer className="relative bg-black border-t border-amber-500/20">
-    <div className="max-w-7xl mx-auto px-6 py-16">
-      <div className="grid md:grid-cols-4 gap-8 mb-12">
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-              Cryptonyte
-            </span>
-          </div>
-          <p className="text-amber-200/60 mb-6 max-w-md">
-            Transforming crypto complexity into clear, actionable strategies for the next generation of digital investors.
-          </p>
-          <div className="flex gap-4">
-            {[Globe, Layers, Target].map((Icon, i) => (
-              <div key={i} className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center hover:bg-amber-500/30 transition-colors duration-300 cursor-pointer">
-                <Icon className="w-5 h-5 text-amber-400"/>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="text-amber-100 font-bold mb-4">Resources</h3>
-          <div className="space-y-2">
-            {[
-              { name: "Free Guide", href: "/what-is-crypto" },
-              { name: "Advanced Course", href: "/guides" },
-              { name: "Blog", href: "#" },
-              { name: "FAQ", href: "/faq" }
-            ].map((item) => (
-              <Link key={item.name} to={item.href} className="block text-amber-200/60 hover:text-amber-100 transition-colors duration-300">{item.name}</Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="text-amber-100 font-bold mb-4">Legal</h3>
-          <div className="space-y-2">
-            {[
-              { name: "Privacy Policy", href: "/privacy" },
-              { name: "Terms of Service", href: "/terms" },
-              { name: "Refund Policy", href: "/refund" },
-              { name: "Contact", href: "/contact" }
-            ].map((item) => (
-              <Link key={item.name} to={item.href} className="block text-amber-200/60 hover:text-amber-100 transition-colors duration-300">{item.name}</Link>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="pt-8 border-t border-amber-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-amber-200/60">© {new Date().getFullYear()} Cryptonyte. All rights reserved.</p>
-        <p className="text-amber-200/40 text-sm">Made with ❤️ for the crypto community</p>
-      </div>
-    </div>
-  </footer>
-);
-
 /* ─────────────────────── DATA ─────────────────────── */
 const GUIDES = [
   {
@@ -383,9 +197,8 @@ const GUIDES = [
     stripeLink: "https://buy.stripe.com/cNi9ATfZL74GfQrcTb6Na06",
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/Cryptonyte%20Advanced%20Crypto%20Guide%20(2026).pdf",
     features: ["Advanced Trading Strategies", "DeFi Deep Dive", "Risk Management", "Portfolio Optimization"],
-    icon: Target,
-    accent: 'from-amber-400 to-orange-500',
-  },
+    icon: ,
+    accent: 'from-amber-400 to-orange-500' },
   {
     id: "cheat-sheet",
     title: "Crypto Cheat Sheet",
@@ -396,8 +209,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/CRYPTONYTECHEATSHEET.pdf",
     features: ["Essential Terms", "Quick Formulas", "Key Concepts", "Handy Reference"],
     icon: Zap,
-    accent: 'from-yellow-400 to-amber-500',
-  },
+    accent: 'from-yellow-400 to-amber-500' },
   {
     id: "insider",
     title: "Insider Tips Guide",
@@ -408,8 +220,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/CRYPTONYTEInsiderTipsGuide.pdf",
     features: ["Insider Strategies", "Pro Tips", "Market Insights", "Expert Analysis"],
     icon: Shield,
-    accent: 'from-amber-500 to-yellow-400',
-  },
+    accent: 'from-amber-500 to-yellow-400' },
   {
     id: "complete-series",
     title: "Complete Series 1.0",
@@ -422,8 +233,7 @@ const GUIDES = [
     features: ["All 3 Guides Included", "Exclusive Bonus Content", "Lifetime Updates", "Priority Support"],
     icon: Crown,
     accent: 'from-yellow-300 via-amber-400 to-orange-500',
-    popular: true,
-  },
+    popular: true },
 ];
 
 const TESTIMONIALS = [
@@ -431,20 +241,17 @@ const TESTIMONIALS = [
     name: "Alex M.",
     role: "Crypto Investor",
     text: "The Advanced Guide completely changed how I approach DeFi. The risk management framework alone was worth 10x the price.",
-    stars: 5,
-  },
+    stars: 5 },
   {
     name: "Sarah K.",
     role: "Day Trader",
     text: "I keep the Cheat Sheet open on my second monitor. It's become an essential part of my daily trading routine.",
-    stars: 5,
-  },
+    stars: 5 },
   {
     name: "James R.",
     role: "Portfolio Manager",
     text: "The Complete Series is the most comprehensive crypto education resource I've found. Highly recommended for serious investors.",
-    stars: 5,
-  },
+    stars: 5 },
 ];
 
 const COMPARISON_FEATURES = [
@@ -554,7 +361,7 @@ export default function Guides() {
   }
 
   return (
-    <div className="min-h-screen text-amber-100 w-full overflow-x-hidden" style={{ backgroundColor: '#050505' }}>
+    <>
       {/* Google Fonts */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
@@ -588,9 +395,7 @@ export default function Guides() {
         .comparison-row:hover { background: rgba(245,185,66,0.08); }
       `}</style>
 
-      <NavBar />
-
-      {/* ════════════ HERO SECTION ════════════ */}
+{/* ════════════ HERO SECTION ════════════ */}
       <motion.section
         ref={heroRef}
         style={{ opacity: heroOpacity, scale: heroScale }}
@@ -1053,7 +858,6 @@ export default function Guides() {
         </div>
       )}
 
-      <Footer />
-    </div>
+
   );
 }
