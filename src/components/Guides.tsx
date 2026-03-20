@@ -197,7 +197,7 @@ const GUIDES = [
     stripeLink: "https://buy.stripe.com/cNi9ATfZL74GfQrcTb6Na06",
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/Cryptonyte%20Advanced%20Crypto%20Guide%20(2026).pdf",
     features: ["Advanced Trading Strategies", "DeFi Deep Dive", "Risk Management", "Portfolio Optimization"],
-    icon: ,
+    icon: Crown,
     accent: 'from-amber-400 to-orange-500' },
   {
     id: "cheat-sheet",
@@ -857,7 +857,6 @@ export default function Guides() {
           </motion.div>
         </div>
       )}
-
-
+    </>
   );
 }

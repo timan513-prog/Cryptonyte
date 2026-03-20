@@ -530,7 +530,6 @@ export default function InteractiveGuide() {
           </motion.div>
         </div>
       )}
-      
-
+    </>
   );
 }
