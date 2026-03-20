@@ -279,8 +279,6 @@ const LearnAndEarn = () => {
           </motion.div>
         </div>
       </div>
-      
-
   );
 };
 
