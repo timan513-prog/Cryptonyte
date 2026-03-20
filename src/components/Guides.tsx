@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Link} from 'react-router-dom';
-import { ArrowLeft, ArrowRight, BookOpen, Download, ShoppingCart, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Target, BookOpen, Download, ShoppingCart, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 
 /* ─────────────────────── PARTICLE CANVAS ─────────────────────── */
