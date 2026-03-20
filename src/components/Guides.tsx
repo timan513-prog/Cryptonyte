@@ -109,7 +109,7 @@ const TiltCard: React.FC<{ children: React.ReactNode; className?: string; glowCo
   const cardRef = useRef<HTMLDivElement>(null);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  const smoothRotateX = useSpring(rotate{ stiffness: 150, damping: 20 });
+  const smoothRotateX = useSpring(rotateX, { stiffness: 150, damping: 20 });
   const smoothRotateY = useSpring(rotateY, { stiffness: 150, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
