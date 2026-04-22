@@ -252,7 +252,7 @@ const CryptoPriceTracker = () => {
   }, []);
 
   return (
-    <section className="py-16 relative bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
+    <section className="py-16 relative bg-gradient-to-b from-transparent via-cream-100/[0.03] to-transparent">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -262,11 +262,11 @@ const CryptoPriceTracker = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-black mb-4">
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-champagne-200 to-champagne-100 bg-clip-text text-transparent">
               Live Crypto Prices
             </span>
           </h2>
-          <p className="text-lg text-amber-200/70 mb-8">
+          <p className="text-lg text-cream-200/75 mb-8">
             Real-time cryptocurrency market data
           </p>
         </motion.div>
@@ -279,7 +279,7 @@ const CryptoPriceTracker = () => {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <div className="bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-2xl p-4 overflow-hidden">
+          <div className="bg-ink-900/80 border border-cream-100/10 rounded-2xl p-4 overflow-hidden">
             <div className="tradingview-widget-container" ref={widgetRef}>
               <div className="tradingview-widget-container__widget"></div>
             </div>
@@ -295,9 +295,9 @@ const CryptoPriceTracker = () => {
         >
           {loading && (
             <div className="text-center py-12">
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-black/60 border border-amber-500/20">
-                <div className="w-5 h-5 border-2 border-amber-400/30 border-t-amber-400 rounded-full animate-spin"></div>
-                <span className="text-amber-200">Loading prices...</span>
+              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-black/60 border border-cream-100/10">
+                <div className="w-5 h-5 border-2 border-champagne-300/30 border-t-champagne-200 rounded-full animate-spin"></div>
+                <span className="text-cream-200">Loading prices...</span>
               </div>
             </div>
           )}
@@ -335,16 +335,16 @@ const CryptoPriceTracker = () => {
                     viewport={{ once: true }}
                     className="group relative"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                    <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-2xl p-6 hover:bg-black/80 transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-champagne-300/15 to-champagne-200/15 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                    <div className="relative bg-ink-900/80 border border-cream-100/10 rounded-2xl p-6 hover:bg-ink-800/80 transition-all duration-300">
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center text-black font-bold text-lg">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-champagne-300 to-champagne-200 flex items-center justify-center text-black font-bold text-lg">
                             {config?.icon || coin.symbol.charAt(0)}
                           </div>
                           <div>
-                            <h3 className="text-amber-100 font-bold text-sm">{coin.name}</h3>
-                            <p className="text-amber-200/60 text-xs">{coin.symbol}</p>
+                            <h3 className="text-cream-100 font-bold text-sm">{coin.name}</h3>
+                            <p className="text-cream-200/60 text-xs">{coin.symbol}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-1">
@@ -354,10 +354,10 @@ const CryptoPriceTracker = () => {
                       </div>
                       
                       <div className="mb-3">
-                        <p className="text-2xl font-bold text-amber-100 mb-1">
+                        <p className="text-2xl font-bold text-cream-100 mb-1">
                           {formatPrice(coin.price)}
                         </p>
-                        <p className="text-amber-200/60 text-xs">
+                        <p className="text-cream-200/60 text-xs">
                           Updated: {formatLastUpdated(coin.lastUpdated)}
                         </p>
                       </div>
@@ -370,7 +370,7 @@ const CryptoPriceTracker = () => {
 
           {lastFetch && !loading && (
             <div className="text-center">
-              <p className="text-amber-200/60 text-sm">
+              <p className="text-cream-200/60 text-sm">
                 Last updated: {lastFetch.toLocaleTimeString('en-US', { 
                   hour12: false,
                   hour: '2-digit',

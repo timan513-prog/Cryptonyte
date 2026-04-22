@@ -1,67 +1,81 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Receipt, Mail } from 'lucide-react';
 
-const RefundPolicy = () => {
+const RefundPolicy: React.FC = () => {
   return (
-    <div className="w-full bg-gradient-to-b from-amber-500/5 to-transparent backdrop-blur-sm overflow-hidden pt-32">
-            <div className="max-w-4xl mx-auto px-6 py-12">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-5xl md:text-6xl font-black mb-8">
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                    Refund Policy
-                  </span>
-                </h1>
+    <div className="pt-32 pb-24">
+      <div className="container-page max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="eyebrow">
+            <Receipt className="w-3.5 h-3.5" />
+            Legal
+          </span>
+          <h1 className="display-xl text-cream-100 mt-4 mb-6 text-balance">
+            Refund Policy
+          </h1>
+          <p className="text-cream-200/60 text-sm">
+            Effective date · 12 December 2025
+          </p>
 
-                <div className="bg-black/60 backdrop-blur-sm border border-amber-500/20 rounded-2xl p-8 mb-8">
-                  <p className="text-amber-200/80 mb-6 text-lg">
-                    <strong>Effective Date:</strong> 12 December 2025
-                  </p>
-                </div>
+          <div className="mt-12 space-y-6">
+            <div className="card-raised p-8 lg:p-10">
+              <h2 className="font-display text-2xl text-cream-100 mb-5">
+                Our refund policy
+              </h2>
+              <div className="space-y-5 text-[15.5px] leading-relaxed text-cream-200/80">
+                <p>
+                  At Cryptonyte, we provide digital products and services
+                  delivered instantly after purchase. Due to the nature
+                  of our business, all sales are final — we do not offer
+                  refunds or exchanges.
+                </p>
+                <p>
+                  We stand by the quality of our products. If you
+                  experience technical issues accessing or using your
+                  purchased materials, contact us at{' '}
+                  <a
+                    href="mailto:mycryptonyte2026@gmail.com"
+                    className="text-champagne-200 hover:text-champagne-100 underline underline-offset-4"
+                  >
+                    mycryptonyte2026@gmail.com
+                  </a>{' '}
+                  and we'll work with you to resolve it promptly.
+                </p>
+                <p>
+                  By completing a purchase on mykryptonyte.com, you
+                  acknowledge and agree to this policy.
+                </p>
+              </div>
+            </div>
 
-                <div className="space-y-8">
-                  <div className="bg-black/60 backdrop-blur-sm border border-amber-500/20 rounded-2xl p-8">
-                    <h2 className="text-3xl font-bold text-amber-400 mb-6">Our Refund Policy</h2>
-                    <p className="text-amber-200/80 mb-6 leading-relaxed">
-                      At Cryptonyte, we provide digital products and services delivered instantly after purchase. Due to the nature of our business, all sales are final and we do not offer refunds or exchanges.
-                    </p>
-                    <p className="text-amber-200/80 mb-6 leading-relaxed">
-                      However, we stand by the quality of our products. If you experience any technical issues accessing or using your purchased materials, please contact us at{" "}
-                      <a href="mailto:mycryptonyte2026@gmail.com" className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300">
-                        mycryptonyte2026@gmail.com
-                      </a>{" "}
-                      and we will work with you to resolve the problem promptly.
-                    </p>
-                    <p className="text-amber-200/80 leading-relaxed">
-                      By completing a purchase on mykryptonyte.com, you acknowledge and agree to this policy.
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-r from-amber-600/20 to-yellow-600/20 border border-amber-400/30 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-amber-400 mb-4">Need Help?</h3>
-                    <p className="text-amber-200/80 mb-4 leading-relaxed">
-                      If you're experiencing any issues with your purchase or have questions about our products, we're here to help:
-                    </p>
-                    <div className="space-y-2 text-amber-200/80">
-                      <p><strong>Email:</strong> <a href="mailto:mycryptonyte2026@gmail.com" className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300">mycryptonyte2026@gmail.com</a></p>
-                      <p>
-                        <strong>Website:</strong>{" "}
-                        <a
-                          href="https://mycryptonyte.com/"
-                          className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300"
-                        >
-                          https://mycryptonyte.com/
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+            <div className="relative overflow-hidden rounded-3xl border border-champagne-300/30 bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 p-8 lg:p-10">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(229,184,92,0.15),transparent_60%)] pointer-events-none" />
+              <div className="relative">
+                <h3 className="font-display text-xl text-cream-100 mb-4">
+                  Need help?
+                </h3>
+                <p className="text-cream-200/80 mb-6 text-[15.5px] leading-relaxed">
+                  If you're experiencing an issue with your purchase or
+                  have questions about our products, we're happy to help.
+                </p>
+                <a
+                  href="mailto:mycryptonyte2026@gmail.com"
+                  className="btn-gold"
+                >
+                  <Mail className="w-4 h-4" />
+                  mycryptonyte2026@gmail.com
+                </a>
+              </div>
             </div>
           </div>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 

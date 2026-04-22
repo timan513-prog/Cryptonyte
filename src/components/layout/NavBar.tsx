@@ -1,30 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { label: 'HOME', href: '/' },
-  { label: 'GUIDES', href: '/guides' },
-  { label: 'LEARN & EARN', href: '/learn-and-earn' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'CONTACT', href: '/contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Learn & Earn', href: '/learn-and-earn' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
 ];
 
 const NavBar: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 32);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
@@ -32,22 +30,9 @@ const NavBar: React.FC = () => {
   const handleNavClick = useCallback(
     (href: string) => (e: React.MouseEvent) => {
       setIsMobileMenuOpen(false);
-
-      // If clicking HOME and already on homepage, scroll to top
       if (href === '/' && location.pathname === '/') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-
-      // If clicking CONTACT, scroll to contact section on homepage
-      if (href === '/contact' && location.pathname === '/') {
-        e.preventDefault();
-        const el = document.getElementById('contact');
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        return;
       }
     },
     [location.pathname]
@@ -59,123 +44,132 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <motion.div
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-4xl"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-    >
-      <div
-        className={`backdrop-blur-xl border border-amber-500/30 shadow-2xl rounded-full px-6 py-3 transition-all duration-500 ${
-          isScrolled ? 'bg-black/80 shadow-[0_8px_32px_rgba(0,0,0,0.6)]' : 'bg-black/40'
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <motion.div
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`transition-all duration-500 ${
+          isScrolled
+            ? 'backdrop-blur-xl bg-ink-950/80 border-b border-cream-100/10'
+            : 'backdrop-blur-md bg-ink-950/30 border-b border-transparent'
         }`}
       >
-        <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-8">
+        <div className="container-page flex items-center justify-between h-16 lg:h-20">
           {/* Brand */}
-          <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-            <span className="font-bold text-lg bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-              Cryptonyte
+          <Link to="/" className="flex items-center gap-3 group">
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-champagne-300 text-ink-950 font-display font-bold text-lg">
+              C
+              <span className="absolute inset-0 rounded-full border border-champagne-300/40 animate-slow-spin" />
             </span>
+            <div className="flex flex-col leading-none">
+              <span className="font-display text-lg font-semibold text-cream-100 tracking-tight">
+                Cryptonyte
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-cream-400 mt-0.5">
+                Est. 2026
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
           <nav
-            className="hidden lg:flex items-center gap-1 xl:gap-2"
+            className="hidden lg:flex items-center gap-1"
             role="navigation"
-            aria-label="Main navigation"
+            aria-label="Main"
           >
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                to={item.href}
-                onClick={handleNavClick(item.href)}
-                className={`px-3 py-2 rounded-full text-xs font-medium transition-all duration-300 relative group whitespace-nowrap inline-flex items-center
-                  ${
-                    isActive(item.href)
-                      ? 'text-amber-100 bg-amber-500/15'
-                      : 'text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10'
+            {NAV_ITEMS.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={handleNavClick(item.href)}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                    active
+                      ? 'text-cream-100'
+                      : 'text-cream-100/60 hover:text-cream-100'
                   }`}
-              >
-                {item.label}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/0 to-yellow-400/0 group-hover:from-amber-400/20 group-hover:to-yellow-400/20 transition-all duration-300" />
-              </Link>
-            ))}
+                >
+                  {item.label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute left-4 right-4 -bottom-0.5 h-px bg-champagne-300"
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
             {/* Desktop CTA */}
             <Link
               to="/what-is-crypto"
-              className="hidden sm:flex group relative overflow-hidden px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 flex-shrink-0"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-champagne-300 text-ink-950 font-semibold text-sm transition-all duration-300 hover:bg-champagne-200 hover:-translate-y-0.5"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Learn More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Start Learning
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
 
-            {/* Mobile menu toggle */}
+            {/* Mobile toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              className="lg:hidden p-2.5 rounded-full border border-cream-100/15 text-cream-100 hover:bg-cream-100/5 transition"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-amber-400" />
+                <X className="w-5 h-5" />
               ) : (
-                <Menu className="w-5 h-5 text-amber-400" />
+                <Menu className="w-5 h-5" />
               )}
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Mobile menu dropdown */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden absolute top-full left-2 right-2 mt-2 z-50"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden container-page pb-4"
           >
-            <div className="backdrop-blur-xl bg-black/90 border border-amber-500/30 shadow-2xl rounded-2xl p-4">
-              <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
+            <div className="rounded-2xl border border-cream-100/10 bg-ink-900/95 backdrop-blur-xl p-3">
+              <nav className="flex flex-col" aria-label="Mobile">
                 {NAV_ITEMS.map((item) => (
                   <Link
                     key={item.label}
                     to={item.href}
                     onClick={handleNavClick(item.href)}
-                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-center
-                      ${
-                        isActive(item.href)
-                          ? 'text-amber-100 bg-amber-500/15'
-                          : 'text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10'
-                      }`}
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl text-[15px] font-medium transition ${
+                      isActive(item.href)
+                        ? 'bg-cream-100/5 text-cream-100'
+                        : 'text-cream-100/70 hover:bg-cream-100/5 hover:text-cream-100'
+                    }`}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <ArrowUpRight className="w-4 h-4 opacity-40" />
                   </Link>
                 ))}
-                <div className="border-t border-amber-500/20 my-2" />
+                <div className="h-px bg-cream-100/10 my-2 mx-4" />
                 <Link
                   to="/what-is-crypto"
-                  className="group relative overflow-hidden px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 text-center"
+                  className="mx-1 mt-1 px-5 py-3 rounded-xl bg-champagne-300 text-ink-950 font-semibold text-sm text-center"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  Start Learning
                 </Link>
               </nav>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </header>
   );
 };
 

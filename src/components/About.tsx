@@ -1,181 +1,208 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Award, BookOpen, TrendingUp, Target } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Users,
+  Award,
+  BookOpen,
+  TrendingUp,
+  Target,
+} from 'lucide-react';
 
-const About = () => {
+const VALUES = [
+  {
+    no: '01',
+    icon: BookOpen,
+    title: 'Education first',
+    body: 'We prioritize learning over shortcuts. Understand before you invest — not the other way around.',
+  },
+  {
+    no: '02',
+    icon: Users,
+    title: 'Community focused',
+    body: 'A calm, supportive community where curiosity is welcome and dumb questions don’t exist.',
+  },
+  {
+    no: '03',
+    icon: Award,
+    title: 'Quality content',
+    body: 'Every guide is researched, tested, and updated. We take our own medicine.',
+  },
+  {
+    no: '04',
+    icon: TrendingUp,
+    title: 'Practical approach',
+    body: 'Real-world frameworks, not theory for its own sake. You’ll be able to act on what you learn.',
+  },
+];
+
+const About: React.FC = () => {
   return (
-    <div className="w-full bg-gradient-to-b from-amber-500/5 to-transparent backdrop-blur-sm overflow-hidden pt-32">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Hero Section */}
+    <div className="pt-32 pb-24">
+      <div className="container-page">
+        {/* Hero */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-20"
         >
-          <h1 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-              About Cryptonyte
-            </span>
+          <span className="eyebrow">
+            <Target className="w-3.5 h-3.5" />
+            About
+          </span>
+          <h1 className="display-xl text-cream-100 mt-4 mb-6 text-balance">
+            Clear thinking.{' '}
+            <span className="italic text-champagne-200">Honest</span> writing.
           </h1>
-          <p className="text-xl text-amber-200/70 mb-4 max-w-3xl mx-auto">
-            Empowering the next generation of crypto investors with clear, actionable education and strategies.
+          <p className="text-lg text-cream-200/75 leading-relaxed">
+            Cryptonyte exists to make crypto legible. We translate, test,
+            and teach — so you can make informed decisions instead of
+            following strangers on the internet.
           </p>
         </motion.div>
 
-        {/* Mission Section */}
+        {/* Mission */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid lg:grid-cols-12 gap-10 mb-24"
         >
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-8 md:p-12">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500">
-                  <Target className="w-8 h-8 text-black"/>
-                </div>
-                <h2 className="text-3xl font-bold text-amber-100">Our Mission</h2>
-              </div>
-              <p className="text-lg text-amber-200/80 leading-relaxed mb-6">
-                At Cryptonyte, we believe that cryptocurrency education shouldn't be overwhelming or confusing. Our mission is to transform complex crypto concepts into clear, digestible content that empowers anyone to make informed decisions in the digital asset space.
-              </p>
-              <p className="text-lg text-amber-200/80 leading-relaxed">
-                We're committed to providing honest, research-backed information that helps you navigate the crypto landscape with confidence, whether you're a complete beginner or looking to expand your knowledge.
-              </p>
-            </div>
+          <div className="lg:col-span-4">
+            <span className="eyebrow">Our mission</span>
+            <h2 className="display-md text-cream-100 mt-4">
+              Make crypto{' '}
+              <span className="italic text-champagne-200">understandable</span>
+              .
+            </h2>
+          </div>
+          <div className="lg:col-span-8 space-y-6 text-[17px] text-cream-200/80 leading-relaxed">
+            <p>
+              We believe cryptocurrency education shouldn't be overwhelming
+              or confusing. Our mission is to transform complex concepts
+              into clear, digestible content — the kind that empowers
+              anyone to act with confidence.
+            </p>
+            <p>
+              We're committed to honest, research-backed information.
+              Whether you're a complete beginner or an experienced investor
+              looking to go deeper, you'll find something here that respects
+              your intelligence and your time.
+            </p>
           </div>
         </motion.div>
 
-        {/* Values Grid */}
+        {/* Values */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-24"
         >
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-              Our Core Values
-            </span>
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: BookOpen,
-                title: "Education First",
-                description: "We prioritize learning over quick profits, ensuring you understand before you invest.",
-                gradient: "from-amber-500 to-yellow-500"
-              },
-              {
-                icon: Users,
-                title: "Community Focused",
-                description: "Building a supportive community where everyone can learn and grow together.",
-                gradient: "from-yellow-500 to-amber-400"
-              },
-              {
-                icon: Award,
-                title: "Quality Content",
-                description: "Every guide and resource is thoroughly researched and regularly updated.",
-                gradient: "from-amber-400 to-yellow-600"
-              },
-              {
-                icon: TrendingUp,
-                title: "Practical Approach",
-                description: "Real-world strategies and actionable insights you can implement immediately.",
-                gradient: "from-yellow-600 to-amber-500"
-              }
-            ].map((value, index) => (
-              <div key={index} className="group relative">
-                <div className={`absolute inset-0 bg-gradient-to-r ${value.gradient}/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500`}></div>
-                <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-2xl p-6 hover:bg-black/80 transition-all duration-300 h-full">
-                  <div className={`p-3 rounded-xl bg-gradient-to-r ${value.gradient} mb-4 w-fit`}>
-                    <value.icon className="w-6 h-6 text-black"/>
-                  </div>
-                  <h3 className="text-xl font-bold text-amber-100 mb-3">{value.title}</h3>
-                  <p className="text-amber-200/70 text-sm leading-relaxed">{value.description}</p>
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <span className="eyebrow">Principles</span>
+              <h2 className="display-md text-cream-100 mt-4">Our core values</h2>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-cream-100/10 rounded-3xl overflow-hidden border border-cream-100/10">
+            {VALUES.map((v) => (
+              <div
+                key={v.title}
+                className="group bg-ink-900 p-8 lg:p-10 hover:bg-ink-800 transition-colors"
+              >
+                <div className="flex items-start justify-between mb-10">
+                  <span className="font-mono text-xs text-champagne-300 tracking-widest">
+                    {v.no}
+                  </span>
+                  <v.icon className="w-5 h-5 text-cream-100/50 group-hover:text-champagne-300 transition" />
                 </div>
+                <h3 className="font-display text-xl text-cream-100 mb-3">
+                  {v.title}
+                </h3>
+                <p className="text-cream-200/70 text-[15px] leading-relaxed">
+                  {v.body}
+                </p>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Story Section */}
+        {/* Story */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="card-raised p-10 lg:p-16 mb-20"
         >
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-amber-100 mb-6 text-center">Our Story</h2>
-              <div className="space-y-6 text-lg text-amber-200/80 leading-relaxed">
-                <p>
-                  Cryptonyte was born from a simple observation: the cryptocurrency space was full of complex jargon, conflicting information, and get-rich-quick schemes that left many people confused and overwhelmed.
-                </p>
-                <p>
-                  We saw talented, intelligent people avoiding crypto entirely because they couldn't find reliable, beginner-friendly resources. Others were making costly mistakes because they jumped in without proper education.
-                </p>
-                <p>
-                  That's when we decided to create something different. Cryptonyte focuses on breaking down complex concepts into digestible, actionable content. We believe that with the right education, anyone can understand and benefit from the cryptocurrency revolution.
-                </p>
-                <p>
-                  Today, we're proud to serve learners worldwide, helping them navigate the crypto space with confidence and clarity.
-                </p>
+          <div className="grid lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-4">
+              <span className="eyebrow">Our story</span>
+              <h2 className="display-md text-cream-100 mt-4">
+                Why Cryptonyte exists.
+              </h2>
+            </div>
+            <div className="lg:col-span-8 space-y-5 text-[17px] text-cream-200/80 leading-relaxed">
+              <p>
+                Cryptonyte was born from a simple observation: the crypto
+                space was full of jargon, conflicting information, and
+                schemes that left smart people confused.
+              </p>
+              <p>
+                Talented, curious people were avoiding crypto entirely
+                because they couldn't find reliable, beginner-friendly
+                resources. Others were making costly mistakes because they
+                jumped in without proper education.
+              </p>
+              <p>
+                So we decided to build something different — a calm,
+                research-driven corner of the internet focused on helping
+                you actually understand what's going on.
+              </p>
 
-                {/* Recon11 Branding — About page only per Timothy's request */}
-                <div className="mt-8 pt-8 border-t border-amber-500/20">
-                  <p className="text-amber-200/60 text-base text-center">
-                    Cryptonyte is a brand of <span className="text-amber-100 font-semibold">Recon11 Global Systems, LLC</span>
-                  </p>
-                </div>
+              <div className="pt-6 mt-2 border-t border-cream-100/10">
+                <p className="text-cream-200/60 text-sm">
+                  Cryptonyte is a brand of{' '}
+                  <span className="text-cream-100 font-medium">
+                    Recon11 Global Systems, LLC
+                  </span>
+                  .
+                </p>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-8 md:p-12">
-              <h2 className="text-3xl font-bold text-amber-100 mb-6">Ready to Start Your Crypto Journey?</h2>
-              <p className="text-lg text-amber-200/70 mb-8 max-w-2xl mx-auto">
-                Join learners who trust Cryptonyte for clear, actionable crypto education.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  to="/what-is-crypto"
-                  className="group/btn relative overflow-hidden px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    <BookOpen className="w-5 h-5"/>
-                    Start Learning
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-                <Link 
-                  to="/contact"
-                  className="group/btn relative overflow-hidden px-8 py-4 rounded-2xl bg-black/60 border border-amber-500/20 text-amber-100 font-bold text-lg transition-all duration-300 hover:bg-black/80"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Get in Touch
-                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300"/>
-                  </span>
-                </Link>
-              </div>
-            </div>
+          <h2 className="display-md text-cream-100 mb-6">
+            Ready to start your crypto journey?
+          </h2>
+          <p className="text-lg text-cream-200/70 mb-8 max-w-xl mx-auto">
+            Join learners who trust Cryptonyte for clear, actionable
+            education.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/what-is-crypto" className="btn-gold">
+              <BookOpen className="w-4 h-4" />
+              Start learning
+            </Link>
+            <Link to="/contact" className="btn-ghost">
+              Get in touch
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
         </motion.div>
       </div>

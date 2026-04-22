@@ -2,15 +2,62 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
+  ArrowUpRight,
   BookOpen,
   Shield,
   TrendingUp,
   Users,
-  Globe,
-  Target,
+  Sparkles,
+  PlayCircle,
+  Check,
+  AlertTriangle,
 } from 'lucide-react';
 import CryptoPriceTracker from '../components/CryptoPriceTracker';
+
+const FEATURES = [
+  {
+    no: '01',
+    icon: BookOpen,
+    title: 'Beginner Friendly',
+    body: 'Start from zero. Our structured path takes you from wallets to strategy without jargon.',
+  },
+  {
+    no: '02',
+    icon: Shield,
+    title: 'Security First',
+    body: 'Protect what you earn. Industry-standard practices, explained in plain English.',
+  },
+  {
+    no: '03',
+    icon: TrendingUp,
+    title: 'Real Market Context',
+    body: 'We teach you to read the market — not to chase signals or follow influencers.',
+  },
+  {
+    no: '04',
+    icon: Users,
+    title: 'Community Powered',
+    body: 'Learn with thousands of peers, mentors, and a growing library of honest guides.',
+  },
+];
+
+const STEPS = [
+  {
+    step: 'Step 01',
+    title: 'Grab the free blueprint',
+    body: 'A 60-page PDF covering the essentials — wallets, blockchains, risk, and getting started safely.',
+  },
+  {
+    step: 'Step 02',
+    title: 'Explore the interactive guide',
+    body: 'Self-paced lessons that build intuition: how coins move, why DeFi exists, what to ignore.',
+  },
+  {
+    step: 'Step 03',
+    title: 'Go deeper with the full course',
+    body: 'Advanced strategies, trading frameworks, and the tools we actually use — in one place.',
+  },
+];
 
 const LandingPage: React.FC = () => {
   const [showDisclaimerModal, setShowDisclaimerModal] = useState(false);
@@ -50,217 +97,269 @@ const LandingPage: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8"
-      >
-        <div className="absolute inset-0 bg-gradient-radial from-[#1A1300] via-transparent to-transparent opacity-60" />
+      {/* ─────────────── HERO ─────────────── */}
+      <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-24 overflow-hidden">
+        <div className="container-page">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+            {/* Left — editorial heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="lg:col-span-7"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <span className="eyebrow">
+                  <span className="h-1.5 w-1.5 rounded-full bg-mint-300 animate-pulse" />
+                  Honest crypto education · 2026
+                </span>
+              </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
-            {/* Left side — Logo */}
-            <div className="flex items-start justify-center pt-8 order-1">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="relative text-center flex flex-col items-center"
-              >
-                <div className="absolute inset-0 bg-gradient-radial from-[#CDA349]/40 to-transparent rounded-full blur-3xl animate-pulse" />
-                <div className="absolute inset-0 bg-gradient-radial from-amber-400/30 to-transparent rounded-full blur-2xl animate-pulse" />
+              <h1 className="display-xl text-cream-100 text-balance">
+                Master crypto,
+                <br />
+                <span className="italic font-light text-champagne-200">
+                  minus
+                </span>{' '}
+                the noise.
+              </h1>
+
+              <p className="mt-8 max-w-xl text-lg text-cream-200/75 leading-relaxed">
+                Cryptonyte is a calm, research-backed library of guides,
+                interactive lessons, and daily notes — built for people who
+                want to understand digital assets, not gamble on them.
+              </p>
+
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                <Link to="/what-is-crypto" className="btn-gold">
+                  Start learning free
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+                <Link to="/guides" className="btn-ghost">
+                  Browse the guides
+                </Link>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-cream-200/60">
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-mint-300" />
+                  No sign-up to start
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-mint-300" />
+                  Free 60-page PDF
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-mint-300" />
+                  Zero financial advice
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right — logo card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.1 }}
+              className="lg:col-span-5 relative"
+            >
+              <div className="relative aspect-square rounded-[2rem] border border-cream-100/10 bg-gradient-to-br from-ink-800 to-ink-900 overflow-hidden">
+                <div className="absolute inset-0 bg-dots opacity-40" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(229,184,92,0.18),transparent_60%)]" />
                 <img
                   src="/image copy copy copy.png"
-                  alt="Cryptonyte — cryptocurrency education platform logo"
-                  className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] xl:h-[900px] object-contain drop-shadow-2xl mx-auto"
+                  alt="Cryptonyte"
+                  className="absolute inset-0 w-full h-full object-contain p-6"
                 />
-              </motion.div>
-            </div>
+                {/* Corner marker */}
+                <div className="absolute top-5 left-5 font-mono text-[10px] uppercase tracking-[0.3em] text-cream-100/60">
+                  /cryptonyte — 001
+                </div>
+                <div className="absolute bottom-5 right-5 flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-mint-300 animate-pulse" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream-100/60">
+                    live
+                  </span>
+                </div>
+              </div>
 
-            {/* Right side — Hero text */}
-            <div className="text-left flex flex-col justify-center min-h-[500px] lg:mt-16 order-2">
+              {/* Floating stat chip */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="mt-16"
+                transition={{ delay: 0.5, duration: 0.5 }}
+                className="absolute -bottom-6 -left-6 hidden sm:block"
               >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent font-[800] tracking-wide">
-                    Master Crypto
-                  </span>
-                  <br />
-                  <span className="text-amber-100 font-[800] tracking-wide">
-                    Like a{' '}
-                    <span className="bg-gradient-to-r from-[#FFD966] to-[#CDA349] bg-clip-text text-transparent">
-                      Pro
-                    </span>
-                  </span>
-                </h1>
-                <p className="text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl lg:max-w-[70%] leading-relaxed text-[#FDF7E4]">
-                  Transform crypto complexity into clear, actionable strategies.
-                  Join thousands learning the future of finance.
-                </p>
+                <div className="card-raised p-5 w-60">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full bg-mint-300/15 text-mint-300 flex items-center justify-center">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-cream-100 font-semibold text-sm">
+                        New · 2026 edition
+                      </div>
+                      <div className="text-cream-200/60 text-xs">
+                        Updated monthly
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
+        </div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-8 sm:mt-16 px-4"
-          >
-            <motion.a
-              href="/what-is-crypto"
-              className="group relative overflow-hidden px-6 sm:px-8 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-base sm:text-lg transition-all duration-300 hover:shadow-[0_0_15px_rgba(205,163,73,0.33)]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <BookOpen className="w-5 h-5" />
-                Start Learning Free
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.a>
-            <motion.a
-              href="/guides"
-              className="group relative overflow-hidden px-6 sm:px-8 py-3 sm:py-4 rounded-2xl bg-transparent border border-amber-500/30 text-[#FDF7E4] font-bold text-base sm:text-lg transition-all duration-300 shadow-[inset_0_0_20px_rgba(205,163,73,0.1)] hover:shadow-[0_0_15px_rgba(205,163,73,0.33),inset_0_0_30px_rgba(205,163,73,0.2)]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <span className="group-hover:hidden">View Guides</span>
-                <span className="hidden group-hover:inline">
-                  Explore the Guides
-                </span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-            </motion.a>
-          </motion.div>
+        {/* Oversized backdrop wordmark */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-10 left-0 right-0 overflow-hidden select-none"
+        >
+          <div className="font-display font-black text-[20vw] leading-none tracking-tightest text-cream-100/[0.025] whitespace-nowrap">
+            CRYPTONYTE · CRYPTONYTE
+          </div>
         </div>
       </section>
 
-      {/* Live Crypto Prices */}
+      {/* ─────────────── LIVE PRICES ─────────────── */}
       <CryptoPriceTracker />
 
-      {/* Features Section */}
-      <section id="guides" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-black mb-6">
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                Why Choose Cryptonyte?
-              </span>
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto text-[#FDF7E4]">
-              We break down complex crypto concepts into digestible, actionable
-              insights you can use immediately.
-            </p>
-          </motion.div>
+      {/* ─────────────── FEATURES ─────────────── */}
+      <section className="relative py-24 lg:py-32">
+        <div className="container-page">
+          <div className="grid lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-5">
+              <span className="eyebrow">What we do</span>
+              <h2 className="display-lg text-cream-100 mt-4">
+                Education that
+                <br />
+                <span className="italic text-champagne-200">respects</span>{' '}
+                your time.
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7 flex items-end">
+              <p className="text-lg text-cream-200/70 leading-relaxed">
+                We don't sell miracle picks or hype. We teach frameworks,
+                build intuition, and show you how the space actually works —
+                so you can decide what's right for you.
+              </p>
+            </div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: BookOpen,
-                title: 'Beginner Friendly',
-                description:
-                  'Start from zero knowledge and build expertise step by step with our structured learning path.',
-                gradient: 'from-amber-500 to-yellow-500',
-              },
-              {
-                icon: Shield,
-                title: 'Security First',
-                description:
-                  'Learn to protect your investments with industry-standard security practices and tools.',
-                gradient: 'from-yellow-500 to-amber-400',
-              },
-              {
-                icon: TrendingUp,
-                title: 'Market Insights',
-                description:
-                  'Stay ahead with real-time analysis, trends, and actionable market intelligence.',
-                gradient: 'from-amber-400 to-yellow-600',
-              },
-              {
-                icon: Users,
-                title: 'Community Driven',
-                description:
-                  'Join a supportive community of learners and experts sharing knowledge and experiences.',
-                gradient: 'from-yellow-600 to-amber-500',
-              },
-            ].map((feature, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-cream-100/10 rounded-3xl overflow-hidden border border-cream-100/10">
+            {FEATURES.map((feature, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="group relative"
+                className="group relative bg-ink-900 p-8 lg:p-10 hover:bg-ink-800 transition-colors duration-300"
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${feature.gradient}/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500`}
-                />
-                <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-2xl p-8 hover:bg-black/80 transition-all duration-300 h-full">
-                  <div
-                    className={`p-4 rounded-xl bg-gradient-to-r ${feature.gradient} mb-6 w-fit`}
-                  >
-                    <feature.icon className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-amber-100 mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-amber-200/70 leading-relaxed">
-                    {feature.description}
-                  </p>
+                <div className="flex items-start justify-between mb-10">
+                  <span className="font-mono text-xs text-champagne-300 tracking-widest">
+                    {feature.no}
+                  </span>
+                  <feature.icon className="w-5 h-5 text-cream-100/50 group-hover:text-champagne-300 transition" />
                 </div>
+                <h3 className="font-display text-2xl text-cream-100 mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-cream-200/70 leading-relaxed text-[15px]">
+                  {feature.body}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What is Crypto Video Section */}
-      <section id="what-is-crypto-video" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl font-black mb-6">
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                What is Crypto?
-              </span>
+      {/* ─────────────── HOW IT WORKS / STEPS ─────────────── */}
+      <section className="relative py-24 lg:py-32">
+        <div className="container-page">
+          <div className="mb-16 max-w-3xl">
+            <span className="eyebrow">The path</span>
+            <h2 className="display-lg text-cream-100 mt-4">
+              Three steps from{' '}
+              <span className="italic text-champagne-200">curious</span> to{' '}
+              <span className="italic text-mint-300">confident</span>.
             </h2>
-            <p className="text-xl max-w-3xl mx-auto text-[#FDF7E4]">
-              Watch our comprehensive introduction to cryptocurrency and
-              discover why it's revolutionizing the financial world.
-            </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-              <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-8">
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-black/80 mb-6">
+          <div className="relative grid md:grid-cols-3 gap-6 lg:gap-8">
+            {STEPS.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="card-raised p-8 h-full">
+                  <div className="font-mono text-xs tracking-[0.3em] text-champagne-300 mb-8 uppercase">
+                    {s.step}
+                  </div>
+                  <h3 className="font-display text-2xl text-cream-100 mb-3 leading-tight">
+                    {s.title}
+                  </h3>
+                  <p className="text-cream-200/70 leading-relaxed text-[15px]">
+                    {s.body}
+                  </p>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div
+                    aria-hidden
+                    className="hidden md:block absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-champagne-300 to-transparent"
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── VIDEO / WHAT IS CRYPTO ─────────────── */}
+      <section className="relative py-24 lg:py-32">
+        <div className="container-page">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="lg:col-span-5"
+            >
+              <span className="eyebrow">
+                <PlayCircle className="w-3.5 h-3.5" />
+                Watch · 6 min
+              </span>
+              <h2 className="display-lg text-cream-100 mt-4 mb-6">
+                What is crypto,{' '}
+                <span className="italic text-champagne-200">really?</span>
+              </h2>
+              <p className="text-lg text-cream-200/70 leading-relaxed mb-8">
+                A clear, no-hype intro to cryptocurrency, blockchain, and
+                why any of it matters for your financial future.
+              </p>
+              <Link
+                to="/what-is-crypto"
+                className="btn-gold"
+              >
+                Explore the interactive guide
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="lg:col-span-7"
+            >
+              <div className="relative rounded-2xl overflow-hidden border border-cream-100/10 bg-ink-900 shadow-card">
+                <div className="aspect-video">
                   <iframe
                     className="w-full h-full"
                     src="https://www.youtube.com/embed/aogr57Xu0P0?si=-SdqKz8Y1UMmpUuC"
@@ -270,259 +369,154 @@ const LandingPage: React.FC = () => {
                     allowFullScreen
                   />
                 </div>
-                <p className="text-lg mb-6 leading-relaxed text-center text-[#FDF7E4]">
-                  Get a clear, beginner-friendly explanation of cryptocurrency,
-                  blockchain technology, and why it matters for your financial
-                  future.
-                </p>
-                <div className="text-center">
-                  <Link
-                    to="/what-is-crypto"
-                    className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25"
-                  >
-                    <BookOpen className="w-5 h-5" />
-                    Explore Interactive Guide
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About Preview Section */}
-      <section id="about" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-yellow-500/5" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-5xl font-black mb-8">
-                <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                  About Cryptonyte
-                </span>
-              </h2>
-              <p className="text-lg mb-6 leading-relaxed text-[#FDF7E4]">
-                We believe cryptocurrency education shouldn't be overwhelming.
-                Our mission is to transform complex concepts into clear,
-                actionable content that empowers informed decision-making.
-              </p>
-              <p className="text-lg mb-8 leading-relaxed text-[#FDF7E4]">
-                Whether you're a complete beginner or looking to expand your
-                knowledge, we provide honest, research-backed information to
-                help you navigate the crypto landscape with confidence.
-              </p>
-              <Link
-                to="/about"
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold transition-all duration-300 hover:shadow-[0_0_15px_rgba(205,163,73,0.33)]"
-              >
-                Learn More About Us
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-3xl blur-xl" />
-              <div className="relative bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-8">
-                <h3 className="text-3xl font-bold text-amber-100 mb-6 text-center">
-                  Our Impact
-                </h3>
-                <p className="text-lg mb-8 text-center text-[#FDF7E4]">
-                  Trusted by learners worldwide, we're building the future of
-                  crypto education.
-                </p>
-                <div className="grid grid-cols-2 gap-6">
-                  {[
-                    {
-                      icon: Globe,
-                      label: 'Global Reach',
-                      value: 'Growing Globally',
-                    },
-                    {
-                      icon: Users,
-                      label: 'Community',
-                      value: 'Active Community',
-                    },
-                    {
-                      icon: BookOpen,
-                      label: 'Resources',
-                      value: 'Expert Resources',
-                    },
-                    {
-                      icon: Target,
-                      label: 'Quality',
-                      value: 'Quality Focused',
-                    },
-                  ].map((stat, index) => (
-                    <div key={index} className="text-center">
-                      <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                        <stat.icon className="w-6 h-6 text-black" />
-                      </div>
-                      <div className="text-2xl font-bold text-amber-100 mb-1">
-                        {stat.value}
-                      </div>
-                      <div className="text-amber-200/70 text-sm">
-                        {stat.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Contact / CTA Section */}
-      <section id="contact" className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent" />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-black mb-6">
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                Ready to Start?
-              </span>
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-[#FDF7E4]">
-              Get your FREE Crypto Blueprint guide and join thousands of
-              learners mastering cryptocurrency.
-            </p>
-
-            {/* Free Guide Highlight */}
-            <div className="bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-400/30 rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                  <BookOpen className="w-6 h-6 text-black" />
-                </div>
-                <div className="text-left">
-                  <h3 className="text-xl font-bold text-amber-100">
-                    The Crypto Blueprint
-                  </h3>
-                  <p className="text-[#FDF7E4]">
-                    Beginner's Guide 2026 Edition
-                  </p>
-                </div>
+      {/* ─────────────── ABOUT PREVIEW ─────────────── */}
+      <section className="relative py-24 lg:py-32">
+        <div className="container-page">
+          <div className="card-raised p-10 lg:p-16 overflow-hidden relative">
+            <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
+            <div className="relative grid lg:grid-cols-12 gap-10 items-center">
+              <div className="lg:col-span-7">
+                <span className="eyebrow">About</span>
+                <h2 className="display-lg text-cream-100 mt-4 mb-6">
+                  A calmer corner of crypto.
+                </h2>
+                <p className="text-lg text-cream-200/75 leading-relaxed mb-4 max-w-2xl">
+                  Crypto doesn't have to be overwhelming. We translate the
+                  jargon, cut the hype, and turn complex concepts into
+                  decisions you can actually make.
+                </p>
+                <p className="text-lg text-cream-200/75 leading-relaxed mb-8 max-w-2xl">
+                  Whether you're starting from zero or looking to go deeper,
+                  we write, research, and test everything ourselves —
+                  so you're not guessing.
+                </p>
+                <Link to="/about" className="btn-ghost">
+                  More about Cryptonyte
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
               </div>
-              <p className="text-sm text-[#FDF7E4]">
-                Complete PDF guide covering everything from basics to advanced
-                strategies
-              </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() =>
-                  triggerDownload(
-                    "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/The%20Crypto%20Blueprint%20Beginner's%20Guide%202026%20Edition%201.2.pdf",
-                    'Crypto-Blueprint-Free-Guide.pdf'
-                  )
-                }
-                className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg transition-all duration-300 hover:shadow-[0_0_15px_rgba(205,163,73,0.33)]"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  Download Free Guide
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </button>
-              <Link
-                to="/what-is-crypto"
-                className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg transition-all duration-300 hover:shadow-[0_0_15px_rgba(205,163,73,0.33)]"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <BookOpen className="w-5 h-5" />
-                  Premium Interactive Guide
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-              <Link
-                to="/contact"
-                className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-black/60 border border-amber-500/30 text-[#FDF7E4] font-bold text-lg transition-all duration-300 hover:bg-black/80 hover:shadow-[0_0_15px_rgba(205,163,73,0.33)]"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Contact Us
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Link>
+              <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+                {[
+                  { label: 'Guides', value: '40+' },
+                  { label: 'Readers', value: 'Global' },
+                  { label: 'Active since', value: '2024' },
+                  { label: 'Updates', value: 'Monthly' },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="relative p-6 rounded-2xl border border-cream-100/10 bg-ink-900/60"
+                  >
+                    <div className="font-display text-3xl text-champagne-200">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.22em] text-cream-100/50">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Disclaimer Modal */}
+      {/* ─────────────── CTA / GET STARTED ─────────────── */}
+      <section id="contact" className="relative py-24 lg:py-32">
+        <div className="container-page">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-champagne-300/30 bg-gradient-to-br from-ink-900 via-ink-800 to-ink-900 p-10 lg:p-20 text-center">
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(229,184,92,0.18),transparent_60%)]"
+            />
+            <div className="relative max-w-3xl mx-auto">
+              <span className="eyebrow justify-center">
+                <BookOpen className="w-3.5 h-3.5" />
+                Free · 60-page PDF
+              </span>
+
+              <h2 className="display-lg text-cream-100 mt-6 mb-6 text-balance">
+                Get the{' '}
+                <span className="italic text-champagne-200">Crypto Blueprint</span>,
+                on the house.
+              </h2>
+              <p className="text-lg text-cream-200/75 leading-relaxed mb-10 max-w-xl mx-auto">
+                The 2026 beginner's guide — wallets, blockchains, strategy,
+                risk, and the mistakes to avoid. Written by us, in plain English.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={() =>
+                    triggerDownload(
+                      "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/The%20Crypto%20Blueprint%20Beginner's%20Guide%202026%20Edition%201.2.pdf",
+                      'Crypto-Blueprint-Free-Guide.pdf'
+                    )
+                  }
+                  className="btn-gold"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Download free guide
+                </button>
+                <Link to="/what-is-crypto" className="btn-primary">
+                  Premium interactive course
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+                <Link to="/contact" className="btn-ghost">
+                  Contact us
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── DISCLAIMER MODAL ─────────────── */}
       {showDisclaimerModal && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-ink-950/80 backdrop-blur-md flex items-center justify-center z-50 p-4"
           role="dialog"
           aria-modal="true"
           aria-labelledby="disclaimer-title"
+          onClick={cancelDownload}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-black/90 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-8 w-full max-w-lg"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="card-raised p-8 w-full max-w-md"
           >
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-amber-500/20 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-amber-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
-                  />
-                </svg>
+            <div className="flex items-start gap-4 mb-6">
+              <div className="shrink-0 h-12 w-12 rounded-full bg-champagne-300/15 text-champagne-200 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5" />
               </div>
-              <h3
-                id="disclaimer-title"
-                className="text-2xl font-bold text-amber-100 mb-4"
-              >
-                Important Disclaimer
-              </h3>
+              <div>
+                <h3
+                  id="disclaimer-title"
+                  className="font-display text-2xl text-cream-100 mb-2"
+                >
+                  Quick disclaimer.
+                </h3>
+                <p className="text-cream-200/75 leading-relaxed text-sm">
+                  Everything in this guide is for education. It's not
+                  financial or investment advice. Always do your own
+                  research before making decisions.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-amber-900/30 border border-amber-500/30 rounded-xl p-6 mb-6">
-              <p className="text-amber-200/90 leading-relaxed text-center">
-                This content is for informational purposes only and does not
-                constitute financial or investment advice. Always conduct
-                independent research before making investment decisions.
-              </p>
-            </div>
-
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={cancelDownload}
-                className="px-6 py-3 rounded-xl bg-black/60 border border-amber-500/20 text-amber-200 hover:bg-black/80 transition-all duration-300"
-              >
+            <div className="flex justify-end gap-3">
+              <button onClick={cancelDownload} className="btn-ghost">
                 Cancel
               </button>
-              <button
-                onClick={proceedWithDownload}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold hover:shadow-lg hover:shadow-amber-500/25 transition-all duration-300"
-              >
-                I Understand, Download
+              <button onClick={proceedWithDownload} className="btn-gold">
+                I understand · Download
               </button>
             </div>
           </motion.div>
