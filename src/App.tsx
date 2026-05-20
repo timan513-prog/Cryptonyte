@@ -13,6 +13,7 @@ import Layout from './components/layout/Layout';
 // Pages
 import LandingPage from './pages/LandingPage';
 import Blog from './pages/Blog';
+import News from './pages/News';
 
 // Components (existing pages — will be stripped of NavBar/Footer)
 import About from './components/About';
@@ -53,6 +54,7 @@ const App: React.FC = () => {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/learn-and-earn" element={<LearnAndEarn />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/news" element={<News />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

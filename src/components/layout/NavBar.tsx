@@ -1,30 +1,29 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { label: 'HOME', href: '/' },
-  { label: 'GUIDES', href: '/guides' },
-  { label: 'LEARN & EARN', href: '/learn-and-earn' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'CONTACT', href: '/contact' },
+  { label: 'Index', href: '/' },
+  { label: 'News', href: '/news' },
+  { label: 'Guides', href: '/guides' },
+  { label: 'Learn & Earn', href: '/learn-and-earn' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
   { label: 'FAQ', href: '/faq' },
 ];
 
 const NavBar: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
@@ -33,14 +32,12 @@ const NavBar: React.FC = () => {
     (href: string) => (e: React.MouseEvent) => {
       setIsMobileMenuOpen(false);
 
-      // If clicking HOME and already on homepage, scroll to top
       if (href === '/' && location.pathname === '/') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
-      // If clicking CONTACT, scroll to contact section on homepage
       if (href === '/contact' && location.pathname === '/') {
         e.preventDefault();
         const el = document.getElementById('contact');
@@ -59,28 +56,29 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <motion.div
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-4xl"
-      initial={{ y: -100, opacity: 0 }}
+    <motion.header
+      initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        isScrolled
+          ? 'bg-[#0a0806]/85 backdrop-blur-md border-b border-[#e5c46d]/15'
+          : 'bg-transparent'
+      }`}
     >
-      <div
-        className={`backdrop-blur-xl border border-amber-500/30 shadow-2xl rounded-full px-6 py-3 transition-all duration-500 ${
-          isScrolled ? 'bg-black/80 shadow-[0_8px_32px_rgba(0,0,0,0.6)]' : 'bg-black/40'
-        }`}
-      >
-        <div className="flex items-center justify-between gap-2 md:gap-6 lg:gap-8">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+        <div className="flex items-center justify-between h-16">
           {/* Brand */}
-          <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
-            <span className="font-bold text-lg bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
+          <Link to="/" className="group inline-flex items-center gap-2.5">
+            <span className="block w-1.5 h-1.5 rounded-full bg-[#e5c46d]" aria-hidden="true" />
+            <span className="display text-lg tracking-tight text-[#f4ecd8] group-hover:text-white transition-colors">
               Cryptonyte
             </span>
           </Link>
 
           {/* Desktop nav */}
           <nav
-            className="hidden lg:flex items-center gap-1 xl:gap-2"
+            className="hidden lg:flex items-center gap-1"
             role="navigation"
             aria-label="Main navigation"
           >
@@ -89,93 +87,85 @@ const NavBar: React.FC = () => {
                 key={item.label}
                 to={item.href}
                 onClick={handleNavClick(item.href)}
-                className={`px-3 py-2 rounded-full text-xs font-medium transition-all duration-300 relative group whitespace-nowrap inline-flex items-center
-                  ${
-                    isActive(item.href)
-                      ? 'text-amber-100 bg-amber-500/15'
-                      : 'text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10'
-                  }`}
+                className={`relative px-3 py-2 text-[13px] font-medium transition-colors duration-200 ${
+                  isActive(item.href)
+                    ? 'text-[#e5c46d]'
+                    : 'text-[#c9bfa8] hover:text-[#f4ecd8]'
+                }`}
               >
                 {item.label}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/0 to-yellow-400/0 group-hover:from-amber-400/20 group-hover:to-yellow-400/20 transition-all duration-300" />
+                {isActive(item.href) && (
+                  <span
+                    className="absolute left-3 right-3 -bottom-0.5 h-px bg-[#e5c46d]"
+                    aria-hidden="true"
+                  />
+                )}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            {/* Desktop CTA */}
+          <div className="flex items-center gap-3">
             <Link
               to="/what-is-crypto"
-              className="hidden sm:flex group relative overflow-hidden px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 flex-shrink-0"
+              className="hidden sm:inline-flex btn-gold items-center gap-2 px-4 py-2 rounded-full text-sm"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Learn More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Start free
             </Link>
 
-            {/* Mobile menu toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="lg:hidden p-2 rounded-md text-[#f4ecd8] hover:bg-white/5 transition-colors"
               aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5 text-amber-400" />
-              ) : (
-                <Menu className="w-5 h-5 text-amber-400" />
-              )}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden absolute top-full left-2 right-2 mt-2 z-50"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-[#0a0806]/95 backdrop-blur-md border-t border-[#e5c46d]/15"
           >
-            <div className="backdrop-blur-xl bg-black/90 border border-amber-500/30 shadow-2xl rounded-2xl p-4">
-              <nav className="flex flex-col gap-2" aria-label="Mobile navigation">
-                {NAV_ITEMS.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={handleNavClick(item.href)}
-                    className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-center
-                      ${
-                        isActive(item.href)
-                          ? 'text-amber-100 bg-amber-500/15'
-                          : 'text-amber-200/80 hover:text-amber-100 hover:bg-amber-500/10'
-                      }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <div className="border-t border-amber-500/20 my-2" />
+            <nav
+              className="max-w-[1400px] mx-auto px-6 py-4 flex flex-col"
+              aria-label="Mobile navigation"
+            >
+              {NAV_ITEMS.map((item, i) => (
                 <Link
-                  to="/what-is-crypto"
-                  className="group relative overflow-hidden px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25 text-center"
+                  key={item.label}
+                  to={item.href}
+                  onClick={handleNavClick(item.href)}
+                  className={`flex items-center justify-between py-3 text-sm ${
+                    i !== 0 ? 'border-t border-white/5' : ''
+                  } ${
+                    isActive(item.href) ? 'text-[#e5c46d]' : 'text-[#c9bfa8] hover:text-[#f4ecd8]'
+                  }`}
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <span>{item.label}</span>
+                  <span className="eyebrow text-[10px] text-[#8a8268]">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
-              </nav>
-            </div>
+              ))}
+              <Link
+                to="/what-is-crypto"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="btn-gold mt-4 inline-flex items-center justify-center px-4 py-3 rounded-full text-sm"
+              >
+                Start free
+              </Link>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </motion.header>
   );
 };
 
