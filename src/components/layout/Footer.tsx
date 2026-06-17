@@ -1,106 +1,127 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, Layers, Target } from 'lucide-react';
+import { ArrowUpRight, Mail, Globe } from 'lucide-react';
 
-const RESOURCE_LINKS = [
+const RESOURCES = [
   { name: 'Free Guide', href: '/what-is-crypto' },
-  { name: 'Advanced Course', href: '/guides' },
+  { name: 'All Guides', href: '/guides' },
+  { name: 'Learn & Earn', href: '/learn-and-earn' },
   { name: 'Blog', href: '/blog' },
   { name: 'FAQ', href: '/faq' },
 ];
 
-const LEGAL_LINKS = [
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms of Service', href: '/terms' },
-  { name: 'Refund Policy', href: '/refund' },
+const COMPANY = [
+  { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
-];
-
-const SOCIAL_LINKS = [
-  { icon: Globe, label: 'Website — Coming Soon', href: '#' },
-  { icon: Layers, label: 'Discord — Coming Soon', href: '#' },
-  { icon: Target, label: 'Twitter — Coming Soon', href: '#' },
+  { name: 'Privacy', href: '/privacy' },
+  { name: 'Terms', href: '/terms' },
+  { name: 'Refund Policy', href: '/refund' },
 ];
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-black border-t border-amber-500/20" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <Link to="/">
-                <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                  Cryptonyte
-                </span>
-              </Link>
-            </div>
-            <p className="text-amber-200/60 mb-6 max-w-md">
-              Transforming crypto complexity into clear, actionable strategies
-              for the next generation of digital investors.
+    <footer
+      className="relative border-t border-cream-100/10 mt-24"
+      role="contentinfo"
+    >
+      <div className="container-page py-20">
+        {/* Top — wordmark */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+          <div className="lg:col-span-5">
+            <Link to="/" className="inline-flex items-center gap-3 mb-6">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-champagne-300 text-ink-950 font-display font-bold">
+                C
+              </span>
+              <span className="font-display text-2xl font-semibold text-cream-100">
+                Cryptonyte
+              </span>
+            </Link>
+            <p className="text-cream-200/70 max-w-md leading-relaxed">
+              Clear, honest crypto education. We translate the jargon,
+              cut the hype, and help you navigate digital assets with confidence.
             </p>
 
-            {/* Social — placeholder with Coming Soon tooltips */}
-            <div className="flex gap-4">
-              {SOCIAL_LINKS.map(({ icon: Icon, label }, i) => (
-                <div key={i} className="relative group">
-                  <div
-                    className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center hover:bg-amber-500/30 transition-colors duration-300 cursor-default"
-                    aria-label={label}
+            <div className="mt-8 flex items-center gap-3">
+              <a
+                href="mailto:mycryptonyte2026@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cream-100/15 text-cream-100/80 text-sm hover:border-champagne-300 hover:text-champagne-200 transition"
+              >
+                <Mail className="w-4 h-4" />
+                mycryptonyte2026@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-3">
+            <h3 className="eyebrow mb-4">Resources</h3>
+            <ul className="space-y-3">
+              {RESOURCES.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="group inline-flex items-center gap-2 text-cream-200/70 hover:text-cream-100 transition"
                   >
-                    <Icon className="w-5 h-5 text-amber-400" />
-                  </div>
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 rounded-lg bg-black/90 border border-amber-500/20 text-amber-200/80 text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    {label}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-black/90" />
-                  </div>
-                </div>
+                    {item.name}
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition" />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="text-amber-100 font-bold mb-4">Resources</h3>
-            <div className="space-y-2">
-              {RESOURCE_LINKS.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="block text-amber-200/60 hover:text-amber-100 transition-colors duration-300"
-                >
-                  {item.name}
-                </Link>
+          <div className="lg:col-span-2">
+            <h3 className="eyebrow mb-4">Company</h3>
+            <ul className="space-y-3">
+              {COMPANY.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="group inline-flex items-center gap-2 text-cream-200/70 hover:text-cream-100 transition"
+                  >
+                    {item.name}
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition" />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h3 className="text-amber-100 font-bold mb-4">Legal</h3>
-            <div className="space-y-2">
-              {LEGAL_LINKS.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="block text-amber-200/60 hover:text-amber-100 transition-colors duration-300"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+          <div className="lg:col-span-2">
+            <h3 className="eyebrow mb-4">Follow</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-cream-200/50 text-sm">
+                <Globe className="w-4 h-4" />
+                Website · soon
+              </li>
+              <li className="flex items-center gap-2 text-cream-200/50 text-sm">
+                <Globe className="w-4 h-4" />
+                Discord · soon
+              </li>
+              <li className="flex items-center gap-2 text-cream-200/50 text-sm">
+                <Globe className="w-4 h-4" />
+                Twitter · soon
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-amber-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-amber-200/60">
-            © {new Date().getFullYear()} Cryptonyte. All rights reserved.
+        {/* Oversized wordmark */}
+        <div className="relative select-none">
+          <div
+            aria-hidden
+            className="font-display font-black text-[22vw] leading-[0.8] tracking-tightest text-cream-100/[0.04] whitespace-nowrap overflow-hidden"
+          >
+            CRYPTONYTE
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="pt-8 mt-4 border-t border-cream-100/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <p className="text-cream-200/50 text-sm">
+            © {new Date().getFullYear()} Cryptonyte · A brand of Recon11 Global Systems, LLC.
           </p>
-          <p className="text-amber-200/40 text-sm">
-            Empowering the next generation of crypto investors
+          <p className="text-cream-200/40 text-xs max-w-md md:text-right">
+            Educational content only. Nothing on this site constitutes financial advice.
           </p>
         </div>
       </div>

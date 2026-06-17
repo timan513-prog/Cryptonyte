@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Link} from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Target, BookOpen, Download, ShoppingCart, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, BookOpen, Download, ShoppingCart, Check, Star, Sparkles, Shield, Zap, Crown } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 
 /* ─────────────────────── PARTICLE CANVAS ─────────────────────── */
@@ -175,10 +174,10 @@ const AnimatedCounter: React.FC<{ value: string; label: string; delay?: number }
       transition={{ duration: 0.6, delay }}
       className="text-center"
     >
-      <div className="text-4xl md:text-5xl font-black bg-gradient-to-b from-amber-300 to-amber-500 bg-clip-text text-transparent font-['Instrument_Serif',Georgia,serif]">
+      <div className="text-4xl md:text-5xl font-black bg-gradient-to-b from-champagne-100 to-champagne-300 bg-clip-text text-transparent font-['Instrument_Serif',Georgia,serif]">
         {value}
       </div>
-      <div className="text-amber-200/50 text-sm mt-1 tracking-wider uppercase font-light">
+      <div className="text-cream-200/50 text-sm mt-1 tracking-wider uppercase font-light">
         {label}
       </div>
     </motion.div>
@@ -198,7 +197,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/Cryptonyte%20Advanced%20Crypto%20Guide%20(2026).pdf",
     features: ["Advanced Trading Strategies", "DeFi Deep Dive", "Risk Management", "Portfolio Optimization"],
     icon: Crown,
-    accent: 'from-amber-400 to-orange-500' },
+    accent: 'from-champagne-200 to-champagne-400' },
   {
     id: "cheat-sheet",
     title: "Crypto Cheat Sheet",
@@ -209,7 +208,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/CRYPTONYTECHEATSHEET.pdf",
     features: ["Essential Terms", "Quick Formulas", "Key Concepts", "Handy Reference"],
     icon: Zap,
-    accent: 'from-yellow-400 to-amber-500' },
+    accent: 'from-champagne-200 to-champagne-300' },
   {
     id: "insider",
     title: "Insider Tips Guide",
@@ -220,7 +219,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/CRYPTONYTEInsiderTipsGuide.pdf",
     features: ["Insider Strategies", "Pro Tips", "Market Insights", "Expert Analysis"],
     icon: Shield,
-    accent: 'from-amber-500 to-yellow-400' },
+    accent: 'from-champagne-300 to-champagne-100' },
   {
     id: "complete-series",
     title: "Complete Series 1.0",
@@ -232,7 +231,7 @@ const GUIDES = [
     downloadUrl: "https://rufgrcaxemvewhqiayfk.supabase.co/storage/v1/object/public/Crypto/CRYPTONYTECOMBO1.pdf",
     features: ["All 3 Guides Included", "Exclusive Bonus Content", "Lifetime Updates", "Priority Support"],
     icon: Crown,
-    accent: 'from-yellow-300 via-amber-400 to-orange-500',
+    accent: 'from-champagne-100 via-champagne-200 to-champagne-400',
     popular: true },
 ];
 
@@ -413,19 +412,19 @@ export default function Guides() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/20 bg-amber-500/5 mb-8">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span className="text-amber-300/80 text-sm font-body tracking-wide">2025 Cryptonyte Series</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cream-100/10 bg-champagne-300/5 mb-8">
+              <Sparkles className="w-4 h-4 text-champagne-200" />
+              <span className="text-champagne-100/80 text-sm font-body tracking-wide">2025 Cryptonyte Series</span>
             </div>
 
             <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.9] mb-8 tracking-tight">
-              <span className="block text-amber-50">Premium</span>
-              <span className="block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
+              <span className="block text-cream-100">Premium</span>
+              <span className="block bg-gradient-to-r from-champagne-100 via-champagne-200 to-champagne-300 bg-clip-text text-transparent">
                 Crypto Guides
               </span>
             </h1>
 
-            <p className="font-body text-lg md:text-xl text-amber-200/50 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+            <p className="font-body text-lg md:text-xl text-cream-200/50 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
               Institutional-grade knowledge distilled into elegant, actionable guides.
               <br className="hidden md:block" />
               Built for the serious investor.
@@ -436,7 +435,7 @@ export default function Guides() {
                 href="#guides"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative overflow-hidden px-10 py-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold font-body text-base transition-all duration-500 hover:shadow-[0_0_40px_rgba(245,185,66,0.3)]"
+                className="group relative overflow-hidden px-10 py-4 rounded-full bg-gradient-to-r from-champagne-200 to-champagne-300 text-black font-bold font-body text-base transition-all duration-500 hover:shadow-[0_0_40px_rgba(229,184,92,0.3)]"
               >
                 <span className="relative z-10 flex items-center gap-3">
                   Explore Guides
@@ -448,7 +447,7 @@ export default function Guides() {
                 onClick={() => setShowCodeModal(true)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-10 py-4 rounded-full border border-amber-500/30 text-amber-200/80 font-medium font-body text-base hover:border-amber-400/60 hover:text-amber-100 transition-all duration-300 hover:bg-amber-500/5"
+                className="px-10 py-4 rounded-full border border-cream-100/15 text-cream-200/80 font-medium font-body text-base hover:border-champagne-200/60 hover:text-cream-100 transition-all duration-300 hover:bg-champagne-300/5"
               >
                 Redeem Access Code
               </motion.button>
@@ -473,19 +472,19 @@ export default function Guides() {
       <ScrollReveal className="max-w-4xl mx-auto px-6 mt-8 mb-16 relative z-10">
         <div className="relative rounded-2xl overflow-hidden">
           <div className="absolute inset-0 rounded-2xl shimmer-border opacity-50 pointer-events-none" />
-          <div className="relative bg-amber-950/20 backdrop-blur-sm border border-amber-500/15 rounded-2xl p-8">
+          <div className="relative bg-ink-900/70 backdrop-blur-sm border border-champagne-300/15 rounded-2xl p-8">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400/20 to-amber-600/10 flex items-center justify-center">
-                <svg className="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-champagne-300/15 to-champagne-300/5 flex items-center justify-center">
+                <svg className="w-7 h-7 text-champagne-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
               </div>
               <div className="font-body">
-                <h3 className="text-lg font-semibold text-amber-100 mb-1">Access Code Delivery</h3>
-                <p className="text-amber-200/60 leading-relaxed text-sm">
-                  Most codes arrive within <strong className="text-amber-200/90">1–2 hours</strong>, up to 24 hours max.
+                <h3 className="text-lg font-semibold text-cream-100 mb-1">Access Code Delivery</h3>
+                <p className="text-cream-200/60 leading-relaxed text-sm">
+                  Most codes arrive within <strong className="text-cream-200/90">1–2 hours</strong>, up to 24 hours max.
                   Haven't received yours?{' '}
-                  <a href="mailto:mycryptonyte2026@gmail.com" className="text-amber-400 hover:text-amber-300 underline underline-offset-2 transition-colors">
+                  <a href="mailto:mycryptonyte2026@gmail.com" className="text-champagne-200 hover:text-champagne-100 underline underline-offset-2 transition-colors">
                     Contact us
                   </a>{' '}
                   for immediate help.
@@ -516,8 +515,8 @@ export default function Guides() {
       {/* ════════════ GUIDES GRID ════════════ */}
       <section id="guides" className="max-w-7xl mx-auto px-6 pb-32">
         <ScrollReveal className="text-center mb-16">
-          <span className="font-body text-amber-400/60 text-sm tracking-[0.25em] uppercase">Choose Your Edge</span>
-          <h2 className="font-display text-4xl md:text-5xl text-amber-50 mt-3">The Collection</h2>
+          <span className="font-body text-champagne-200/60 text-sm tracking-[0.25em] uppercase">Choose Your Edge</span>
+          <h2 className="font-display text-4xl md:text-5xl text-cream-100 mt-3">The Collection</h2>
         </ScrollReveal>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
@@ -529,17 +528,17 @@ export default function Guides() {
                   {/* Popular ribbon */}
                   {guide.popular && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20">
-                      <div className="px-5 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black text-xs font-bold font-body tracking-wider shadow-lg shadow-amber-500/30">
+                      <div className="px-5 py-1.5 rounded-full bg-gradient-to-r from-champagne-200 to-champagne-300 text-black text-xs font-bold font-body tracking-wider shadow-lg shadow-champagne-300/30">
                         BEST VALUE
                       </div>
                     </div>
                   )}
 
                   <div className={`relative h-full rounded-2xl overflow-hidden transition-all duration-500 glow-pulse ${
-                    guide.popular ? 'border-2 border-amber-400/50' : 'border border-amber-500/10 hover:border-amber-500/25'
+                    guide.popular ? 'border-2 border-champagne-200/50' : 'border border-champagne-300/10 hover:border-champagne-300/25'
                   }`}>
                     {/* Card inner gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-amber-500/[0.04] via-transparent to-amber-500/[0.02] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-cream-100/[0.03] via-transparent to-cream-100/[0.02] pointer-events-none" />
 
                     <div className="relative p-7 flex flex-col h-full font-body">
                       {/* Icon & subtitle */}
@@ -548,32 +547,32 @@ export default function Guides() {
                           <IconComponent className="w-5 h-5 text-black" />
                         </div>
                         <div>
-                          <div className="text-[11px] tracking-[0.15em] uppercase text-amber-400/50 font-medium">{guide.subtitle}</div>
+                          <div className="text-[11px] tracking-[0.15em] uppercase text-champagne-200/50 font-medium">{guide.subtitle}</div>
                         </div>
                       </div>
 
-                      <h3 className="font-display text-2xl text-amber-50 mb-3 leading-tight">{guide.title}</h3>
+                      <h3 className="font-display text-2xl text-cream-100 mb-3 leading-tight">{guide.title}</h3>
 
-                      <p className="text-amber-200/45 text-sm leading-relaxed mb-6 font-light flex-grow">
+                      <p className="text-cream-200/45 text-sm leading-relaxed mb-6 font-light flex-grow">
                         {guide.description}
                       </p>
 
                       {/* Features */}
                       <div className="mb-6 space-y-2">
                         {guide.features.map((feature, i) => (
-                          <div key={i} className="flex items-center gap-2.5 text-amber-200/60 text-sm">
-                            <Check className="w-3.5 h-3.5 text-amber-400/70 flex-shrink-0" />
+                          <div key={i} className="flex items-center gap-2.5 text-cream-200/60 text-sm">
+                            <Check className="w-3.5 h-3.5 text-champagne-200/70 flex-shrink-0" />
                             <span>{feature}</span>
                           </div>
                         ))}
                       </div>
 
                       {/* Pricing */}
-                      <div className="mb-6 pt-4 border-t border-amber-500/10">
+                      <div className="mb-6 pt-4 border-t border-champagne-300/10">
                         <div className="flex items-baseline gap-2">
-                          <span className="font-display text-3xl text-amber-50">${guide.price.toFixed(2)}</span>
+                          <span className="font-display text-3xl text-cream-100">${guide.price.toFixed(2)}</span>
                           {guide.originalPrice && (
-                            <span className="text-sm text-amber-200/30 line-through">${guide.originalPrice.toFixed(2)}</span>
+                            <span className="text-sm text-cream-200/30 line-through">${guide.originalPrice.toFixed(2)}</span>
                           )}
                         </div>
                         {guide.originalPrice && (
@@ -606,8 +605,8 @@ export default function Guides() {
                             whileTap={{ scale: 0.98 }}
                             className={`w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 ${
                               guide.popular
-                                ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-black hover:shadow-lg hover:shadow-amber-500/25'
-                                : 'bg-gradient-to-r from-amber-500/90 to-yellow-500/90 text-black hover:shadow-lg hover:shadow-amber-500/20'
+                                ? 'bg-gradient-to-r from-champagne-200 to-champagne-300 text-black hover:shadow-lg hover:shadow-champagne-300/25'
+                                : 'bg-gradient-to-r from-champagne-300/90 to-champagne-200/90 text-black hover:shadow-lg hover:shadow-champagne-300/20'
                             }`}
                           >
                             <ShoppingCart className="w-4 h-4" />
@@ -616,7 +615,7 @@ export default function Guides() {
 
                           <button
                             onClick={() => { setSelectedGuide(guide.id); setShowCodeModal(true); }}
-                            className="w-full py-3 rounded-xl border border-amber-500/15 text-amber-200/60 text-sm font-medium hover:text-amber-200/90 hover:border-amber-500/30 hover:bg-amber-500/5 transition-all duration-300 flex items-center justify-center gap-2"
+                            className="w-full py-3 rounded-xl border border-champagne-300/15 text-cream-200/60 text-sm font-medium hover:text-cream-200/90 hover:border-cream-100/15 hover:bg-champagne-300/5 transition-all duration-300 flex items-center justify-center gap-2"
                           >
                             Have a Code?
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -635,54 +634,54 @@ export default function Guides() {
       {/* ════════════ COMPARISON TABLE ════════════ */}
       <section className="max-w-5xl mx-auto px-6 pb-32">
         <ScrollReveal className="text-center mb-16">
-          <span className="font-body text-amber-400/60 text-sm tracking-[0.25em] uppercase">Side by Side</span>
-          <h2 className="font-display text-4xl md:text-5xl text-amber-50 mt-3">Compare Guides</h2>
+          <span className="font-body text-champagne-200/60 text-sm tracking-[0.25em] uppercase">Side by Side</span>
+          <h2 className="font-display text-4xl md:text-5xl text-cream-100 mt-3">Compare Guides</h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
-          <div className="relative rounded-2xl overflow-hidden border border-amber-500/10">
-            <div className="absolute inset-0 bg-gradient-to-b from-amber-500/[0.03] to-transparent pointer-events-none" />
+          <div className="relative rounded-2xl overflow-hidden border border-champagne-300/10">
+            <div className="absolute inset-0 bg-gradient-to-b from-cream-100/[0.02] to-transparent pointer-events-none" />
 
             {/* Sticky header row */}
             <div className="relative overflow-x-auto">
               <table className="w-full font-body text-sm">
                 <thead>
-                  <tr className="border-b border-amber-500/10">
-                    <th className="text-left py-5 px-6 text-amber-200/40 font-medium min-w-[180px]">Feature</th>
+                  <tr className="border-b border-champagne-300/10">
+                    <th className="text-left py-5 px-6 text-cream-200/40 font-medium min-w-[180px]">Feature</th>
                     <th className="py-5 px-4 text-center min-w-[100px]">
-                      <div className="text-amber-200/70 font-semibold text-xs">Advanced</div>
-                      <div className="text-amber-400/40 text-[10px] mt-0.5">$39.99</div>
+                      <div className="text-cream-200/75 font-semibold text-xs">Advanced</div>
+                      <div className="text-champagne-200/40 text-[10px] mt-0.5">$39.99</div>
                     </th>
                     <th className="py-5 px-4 text-center min-w-[100px]">
-                      <div className="text-amber-200/70 font-semibold text-xs">Cheat Sheet</div>
-                      <div className="text-amber-400/40 text-[10px] mt-0.5">$9.99</div>
+                      <div className="text-cream-200/75 font-semibold text-xs">Cheat Sheet</div>
+                      <div className="text-champagne-200/40 text-[10px] mt-0.5">$9.99</div>
                     </th>
                     <th className="py-5 px-4 text-center min-w-[100px]">
-                      <div className="text-amber-200/70 font-semibold text-xs">Insider</div>
-                      <div className="text-amber-400/40 text-[10px] mt-0.5">$19.99</div>
+                      <div className="text-cream-200/75 font-semibold text-xs">Insider</div>
+                      <div className="text-champagne-200/40 text-[10px] mt-0.5">$19.99</div>
                     </th>
                     <th className="py-5 px-4 text-center min-w-[100px] relative">
-                      <div className="absolute -top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-b-full" />
-                      <div className="text-amber-100 font-bold text-xs">Complete</div>
-                      <div className="text-amber-400/60 text-[10px] mt-0.5">$59.99</div>
+                      <div className="absolute -top-0 left-0 right-0 h-1 bg-gradient-to-r from-champagne-200 to-champagne-300 rounded-b-full" />
+                      <div className="text-cream-100 font-bold text-xs">Complete</div>
+                      <div className="text-champagne-200/60 text-[10px] mt-0.5">$59.99</div>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {COMPARISON_FEATURES.map((feature, i) => (
-                    <tr key={i} className="comparison-row border-b border-amber-500/5 transition-colors duration-200">
-                      <td className="py-4 px-6 text-amber-200/60 font-medium">{feature.name}</td>
+                    <tr key={i} className="comparison-row border-b border-champagne-300/5 transition-colors duration-200">
+                      <td className="py-4 px-6 text-cream-200/60 font-medium">{feature.name}</td>
                       <td className="py-4 px-4 text-center">
-                        {feature.advanced ? <Check className="w-4 h-4 text-amber-400 mx-auto" /> : <span className="text-amber-200/15">—</span>}
+                        {feature.advanced ? <Check className="w-4 h-4 text-champagne-200 mx-auto" /> : <span className="text-cream-200/15">—</span>}
                       </td>
                       <td className="py-4 px-4 text-center">
-                        {feature.cheat ? <Check className="w-4 h-4 text-amber-400 mx-auto" /> : <span className="text-amber-200/15">—</span>}
+                        {feature.cheat ? <Check className="w-4 h-4 text-champagne-200 mx-auto" /> : <span className="text-cream-200/15">—</span>}
                       </td>
                       <td className="py-4 px-4 text-center">
-                        {feature.insider ? <Check className="w-4 h-4 text-amber-400 mx-auto" /> : <span className="text-amber-200/15">—</span>}
+                        {feature.insider ? <Check className="w-4 h-4 text-champagne-200 mx-auto" /> : <span className="text-cream-200/15">—</span>}
                       </td>
-                      <td className="py-4 px-4 text-center bg-amber-500/[0.04]">
-                        {feature.complete ? <Check className="w-4 h-4 text-amber-400 mx-auto" /> : <span className="text-amber-200/15">—</span>}
+                      <td className="py-4 px-4 text-center bg-champagne-300/[0.04]">
+                        {feature.complete ? <Check className="w-4 h-4 text-champagne-200 mx-auto" /> : <span className="text-cream-200/15">—</span>}
                       </td>
                     </tr>
                   ))}
@@ -696,35 +695,35 @@ export default function Guides() {
       {/* ════════════ TESTIMONIALS ════════════ */}
       <section className="max-w-5xl mx-auto px-6 pb-32">
         <ScrollReveal className="text-center mb-16">
-          <span className="font-body text-amber-400/60 text-sm tracking-[0.25em] uppercase">What Readers Say</span>
-          <h2 className="font-display text-4xl md:text-5xl text-amber-50 mt-3">Trusted by Traders</h2>
+          <span className="font-body text-champagne-200/60 text-sm tracking-[0.25em] uppercase">What Readers Say</span>
+          <h2 className="font-display text-4xl md:text-5xl text-cream-100 mt-3">Trusted by Traders</h2>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
             <ScrollReveal key={i} delay={i * 0.12}>
-              <div className="relative rounded-2xl border border-amber-500/10 p-7 hover:border-amber-500/20 transition-all duration-500 group h-full">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-amber-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="relative rounded-2xl border border-champagne-300/10 p-7 hover:border-cream-100/10 transition-all duration-500 group h-full">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-cream-100/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 <div className="relative">
                   {/* Stars */}
                   <div className="flex gap-1 mb-5">
                     {Array.from({ length: t.stars }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      <Star key={j} className="w-4 h-4 text-champagne-200 fill-champagne-200" />
                     ))}
                   </div>
 
-                  <p className="font-body text-amber-200/60 leading-relaxed mb-6 text-sm font-light italic">
+                  <p className="font-body text-cream-200/60 leading-relaxed mb-6 text-sm font-light italic">
                     "{t.text}"
                   </p>
 
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400/20 to-amber-600/10 flex items-center justify-center">
-                      <span className="text-amber-400 font-bold font-body text-sm">{t.name[0]}</span>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-champagne-300/15 to-champagne-300/5 flex items-center justify-center">
+                      <span className="text-champagne-200 font-bold font-body text-sm">{t.name[0]}</span>
                     </div>
                     <div>
-                      <div className="text-amber-100 font-semibold text-sm font-body">{t.name}</div>
-                      <div className="text-amber-200/40 text-xs font-body">{t.role}</div>
+                      <div className="text-cream-100 font-semibold text-sm font-body">{t.name}</div>
+                      <div className="text-cream-200/40 text-xs font-body">{t.role}</div>
                     </div>
                   </div>
                 </div>
@@ -738,16 +737,16 @@ export default function Guides() {
       <section className="max-w-3xl mx-auto px-6 pb-32">
         <ScrollReveal>
           <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-yellow-500/10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-champagne-300/10 via-transparent to-champagne-200/10 pointer-events-none" />
             <div className="absolute inset-[1px] rounded-3xl bg-[#080808] pointer-events-none" />
 
             <div className="relative p-12 text-center">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-amber-400/20 to-amber-600/10 flex items-center justify-center float-animation">
-                <BookOpen className="w-8 h-8 text-amber-400" />
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-champagne-300/15 to-champagne-300/5 flex items-center justify-center float-animation">
+                <BookOpen className="w-8 h-8 text-champagne-200" />
               </div>
 
-              <h3 className="font-display text-3xl text-amber-50 mb-3">Purchased on Etsy?</h3>
-              <p className="font-body text-amber-200/50 mb-8 max-w-md mx-auto text-sm leading-relaxed">
+              <h3 className="font-display text-3xl text-cream-100 mb-3">Purchased on Etsy?</h3>
+              <p className="font-body text-cream-200/50 mb-8 max-w-md mx-auto text-sm leading-relaxed">
                 Enter your unlock code below to instantly access all your purchased guides.
               </p>
 
@@ -755,7 +754,7 @@ export default function Guides() {
                 onClick={() => setShowCodeModal(true)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold font-body text-sm transition-all duration-500 hover:shadow-[0_0_40px_rgba(245,185,66,0.25)]"
+                className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-champagne-200 to-champagne-300 text-black font-bold font-body text-sm transition-all duration-500 hover:shadow-[0_0_40px_rgba(245,185,66,0.25)]"
               >
                 Enter Etsy Code
                 <ArrowRight className="w-5 h-5" />
@@ -772,19 +771,19 @@ export default function Guides() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative bg-[#0a0a0a] border border-amber-500/20 rounded-3xl p-10 w-full max-w-lg"
+            className="relative bg-[#0a0a0a] border border-cream-100/10 rounded-3xl p-10 w-full max-w-lg"
           >
             <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-amber-500/10 flex items-center justify-center">
-                <svg className="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-champagne-300/10 flex items-center justify-center">
+                <svg className="w-8 h-8 text-champagne-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
-              <h3 className="font-display text-3xl text-amber-50 mb-2">Disclaimer</h3>
+              <h3 className="font-display text-3xl text-cream-100 mb-2">Disclaimer</h3>
             </div>
 
-            <div className="bg-amber-950/20 border border-amber-500/10 rounded-2xl p-6 mb-8">
-              <p className="font-body text-amber-200/70 leading-relaxed text-center text-sm">
+            <div className="bg-ink-900/70 border border-champagne-300/10 rounded-2xl p-6 mb-8">
+              <p className="font-body text-cream-200/75 leading-relaxed text-center text-sm">
                 This content is for informational purposes only and does not constitute financial or investment advice. Always conduct independent research before making investment decisions.
               </p>
             </div>
@@ -792,7 +791,7 @@ export default function Guides() {
             <div className="flex justify-center gap-4 font-body">
               <button
                 onClick={cancelDownload}
-                className="px-7 py-3 rounded-xl border border-amber-500/15 text-amber-200/60 hover:text-amber-200/90 hover:border-amber-500/30 transition-all duration-300 text-sm font-medium"
+                className="px-7 py-3 rounded-xl border border-champagne-300/15 text-cream-200/60 hover:text-cream-200/90 hover:border-cream-100/15 transition-all duration-300 text-sm font-medium"
               >
                 Cancel
               </button>
@@ -800,7 +799,7 @@ export default function Guides() {
                 onClick={proceedWithDownload}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-7 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold text-sm hover:shadow-lg hover:shadow-amber-500/25 transition-all duration-300"
+                className="px-7 py-3 rounded-xl bg-gradient-to-r from-champagne-200 to-champagne-300 text-black font-bold text-sm hover:shadow-lg hover:shadow-champagne-300/25 transition-all duration-300"
               >
                 I Understand, Download
               </motion.button>
@@ -816,13 +815,13 @@ export default function Guides() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative bg-[#0a0a0a] border border-amber-500/20 rounded-3xl p-10 w-full max-w-md"
+            className="relative bg-[#0a0a0a] border border-cream-100/10 rounded-3xl p-10 w-full max-w-md"
           >
-            <h3 className="font-display text-3xl text-amber-50 mb-2 text-center">
+            <h3 className="font-display text-3xl text-cream-100 mb-2 text-center">
               {selectedGuide ? 'Unlock Guide' : 'Enter Your Code'}
             </h3>
             {selectedGuide && (
-              <p className="text-center text-amber-200/40 font-body text-sm mb-6">
+              <p className="text-center text-cream-200/40 font-body text-sm mb-6">
                 {GUIDES.find(g => g.id === selectedGuide)?.title}
               </p>
             )}
@@ -834,13 +833,13 @@ export default function Guides() {
                 value={codeInput}
                 onChange={(e) => setCodeInput(e.target.value)}
                 placeholder="Paste your code here"
-                className="w-full mb-6 rounded-xl border border-amber-500/15 bg-amber-500/[0.03] text-amber-100 p-4 text-center focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 focus:outline-none placeholder-amber-200/25 font-body transition-all duration-300"
+                className="w-full mb-6 rounded-xl border border-champagne-300/15 bg-champagne-300/[0.03] text-cream-100 p-4 text-center focus:ring-2 focus:ring-champagne-300/50 focus:border-champagne-200/50 focus:outline-none placeholder-cream-200/25 font-body transition-all duration-300"
               />
               <div className="flex justify-center gap-4 font-body">
                 <button
                   type="button"
                   onClick={() => { setShowCodeModal(false); setSelectedGuide(null); setCodeInput(""); }}
-                  className="px-7 py-3 rounded-xl border border-amber-500/15 text-amber-200/60 hover:text-amber-200/90 hover:border-amber-500/30 transition-all duration-300 text-sm font-medium"
+                  className="px-7 py-3 rounded-xl border border-champagne-300/15 text-cream-200/60 hover:text-cream-200/90 hover:border-cream-100/15 transition-all duration-300 text-sm font-medium"
                 >
                   Cancel
                 </button>
@@ -848,7 +847,7 @@ export default function Guides() {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-7 py-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 text-black font-bold text-sm hover:shadow-lg hover:shadow-amber-500/25 transition-all duration-300"
+                  className="px-7 py-3 rounded-xl bg-gradient-to-r from-champagne-200 to-champagne-300 text-black font-bold text-sm hover:shadow-lg hover:shadow-champagne-300/25 transition-all duration-300"
                 >
                   {selectedGuide ? "Unlock Guide" : "Unlock Guides"}
                 </motion.button>

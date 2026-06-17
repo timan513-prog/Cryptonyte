@@ -1,68 +1,181 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Mail, Send, MessageCircle, Clock, Globe } from 'lucide-react';
 
-const RefundPolicy = () => {
+const Contact: React.FC = () => {
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+
+  const mailto = () => {
+    const subject = encodeURIComponent(
+      `Hello from ${form.name || 'Cryptonyte visitor'}`
+    );
+    const body = encodeURIComponent(
+      `${form.message}\n\n— ${form.name}${
+        form.email ? ` (${form.email})` : ''
+      }`
+    );
+    window.location.href = `mailto:mycryptonyte2026@gmail.com?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.message.trim()) return;
+    mailto();
+  };
+
   return (
-    <div className="w-full bg-gradient-to-b from-amber-500/5 to-transparent backdrop-blur-sm overflow-hidden pt-32">
-            <div className="max-w-4xl mx-auto px-6 py-12">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <h1 className="text-5xl md:text-6xl font-black mb-8">
-                  <span className="bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                    Refund Policy
-                  </span>
-                </h1>
+    <div className="pt-32 pb-24">
+      <div className="container-page">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-16"
+        >
+          <span className="eyebrow">
+            <MessageCircle className="w-3.5 h-3.5" />
+            Say hi
+          </span>
+          <h1 className="display-xl text-cream-100 mt-4 mb-6 text-balance">
+            Questions? Feedback?{' '}
+            <span className="italic text-champagne-200">Write to us.</span>
+          </h1>
+          <p className="text-lg text-cream-200/75 leading-relaxed">
+            We read every message. Whether it's a content request, a
+            technical issue, or a thoughtful critique — we'd love to hear
+            from you.
+          </p>
+        </motion.div>
 
-                <div className="bg-black/60 backdrop-blur-sm border border-amber-500/20 rounded-2xl p-8 mb-8">
-                  <p className="text-amber-200/80 mb-6 text-lg">
-                    <strong>Effective Date:</strong> 12 December 2025
-                  </p>
-                </div>
-
-                <div className="space-y-8">
-                  <div className="bg-black/60 backdrop-blur-sm border border-amber-500/20 rounded-2xl p-8">
-                    <h2 className="text-3xl font-bold text-amber-400 mb-6">Our Refund Policy</h2>
-                    <p className="text-amber-200/80 mb-6 leading-relaxed">
-                      At Cryptonyte, we provide digital products and services delivered instantly after purchase. Due to the nature of our business, all sales are final and we do not offer refunds or exchanges.
-                    </p>
-                    <p className="text-amber-200/80 mb-6 leading-relaxed">
-                      However, we stand by the quality of our products. If you experience any technical issues accessing or using your purchased materials, please contact us at{" "}
-                      <a href="mailto:mycryptonyte2026@gmail.com" className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300">
-                        mycryptonyte2026@gmail.com
-                      </a>{" "}
-                      and we will work with you to resolve the problem promptly.
-                    </p>
-                    <p className="text-amber-200/80 leading-relaxed">
-                      By completing a purchase on mykryptonyte.com, you acknowledge and agree to this policy.
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-r from-amber-600/20 to-yellow-600/20 border border-amber-400/30 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-amber-400 mb-4">Need Help?</h3>
-                    <p className="text-amber-200/80 mb-4 leading-relaxed">
-                      If you're experiencing any issues with your purchase or have questions about our products, we're here to help:
-                    </p>
-                    <div className="space-y-2 text-amber-200/80">
-                      <p><strong>Email:</strong> <a href="mailto:mycryptonyte2026@gmail.com" className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300">mycryptonyte2026@gmail.com</a></p>
-                      <p>
-                        <strong>Website:</strong>{" "}
-                        <a
-                          href="https://mycryptonyte.com/"
-                          className="text-amber-400 hover:text-amber-300 underline transition-colors duration-300"
-                        >
-                          https://mycryptonyte.com/
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+        <div className="grid lg:grid-cols-12 gap-8">
+          {/* Form */}
+          <motion.form
+            onSubmit={onSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7 card-raised p-8 lg:p-10 space-y-6"
+          >
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-xs uppercase tracking-[0.22em] text-cream-100/50 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Your name"
+                  className="w-full bg-ink-950 border border-cream-100/10 rounded-xl px-4 py-3 text-cream-100 placeholder:text-cream-100/30 focus:outline-none focus:border-champagne-300 transition"
+                />
+              </div>
+              <div>
+                <label className="block text-xs uppercase tracking-[0.22em] text-cream-100/50 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="you@domain.com"
+                  className="w-full bg-ink-950 border border-cream-100/10 rounded-xl px-4 py-3 text-cream-100 placeholder:text-cream-100/30 focus:outline-none focus:border-champagne-300 transition"
+                />
+              </div>
             </div>
-          </div>
+
+            <div>
+              <label className="block text-xs uppercase tracking-[0.22em] text-cream-100/50 mb-2">
+                Message
+              </label>
+              <textarea
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                rows={6}
+                placeholder="What's on your mind?"
+                className="w-full bg-ink-950 border border-cream-100/10 rounded-xl px-4 py-3 text-cream-100 placeholder:text-cream-100/30 focus:outline-none focus:border-champagne-300 transition resize-none"
+                required
+              />
+            </div>
+
+            <div className="flex items-center justify-between gap-4 pt-2">
+              <p className="text-xs text-cream-200/50">
+                Submitting opens your mail app to send us a message.
+              </p>
+              <button
+                type="submit"
+                className="btn-gold whitespace-nowrap"
+                disabled={!form.message.trim()}
+              >
+                {sent ? 'Opened mail app' : 'Send message'}
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.form>
+
+          {/* Info panel */}
+          <motion.aside
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5 space-y-4"
+          >
+            <a
+              href="mailto:mycryptonyte2026@gmail.com"
+              className="card-raised p-6 block hover:border-champagne-300/40 transition"
+            >
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-full bg-champagne-300/15 text-champagne-200 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-display text-lg text-cream-100 mb-1">
+                    Email us directly
+                  </div>
+                  <div className="text-sm text-cream-200/70 break-all">
+                    mycryptonyte2026@gmail.com
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <div className="card-raised p-6">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-full bg-mint-300/15 text-mint-300 flex items-center justify-center shrink-0">
+                  <Clock className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-display text-lg text-cream-100 mb-1">
+                    Response time
+                  </div>
+                  <div className="text-sm text-cream-200/70">
+                    We reply within 1–2 business days.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-raised p-6">
+              <div className="flex items-start gap-4">
+                <div className="h-10 w-10 rounded-full bg-cream-100/10 text-cream-100 flex items-center justify-center shrink-0">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-display text-lg text-cream-100 mb-1">
+                    Elsewhere
+                  </div>
+                  <div className="text-sm text-cream-200/70">
+                    Discord & Twitter — coming soon.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.aside>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default RefundPolicy;
+export default Contact;
