@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import { ScrollProgress } from '../effects/Effects';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Background layers — subtle, never busy */}
       <div className="bg-vignette" aria-hidden="true" />
       <div className="bg-hairline-grid" aria-hidden="true" />
+      <div className="bg-grain" aria-hidden="true" />
+
+      <ScrollProgress />
 
       <div className="relative z-10">
         <NavBar />

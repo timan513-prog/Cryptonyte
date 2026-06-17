@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, Download, Play } from 'lucide-react';
 import CryptoPriceTracker from '../components/CryptoPriceTracker';
+import {
+  CursorSpotlight,
+  SplitReveal,
+  Counter,
+  SectionWatermark,
+  TiltCard,
+} from '../components/effects/Effects';
 
 const SECTION_LABEL = (n: string, label: string) => (
   <div className="flex items-center gap-3 mb-6">
@@ -97,7 +104,10 @@ const LandingPage: React.FC = () => {
         id="home"
         className="relative min-h-screen flex flex-col pt-28 lg:pt-32"
       >
-        <div className="max-w-[1400px] w-full mx-auto px-6 lg:px-10 flex-1 flex flex-col">
+        <div id="hero-spotlight-host" className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          <CursorSpotlight />
+        </div>
+        <div className="relative max-w-[1400px] w-full mx-auto px-6 lg:px-10 flex-1 flex flex-col">
           {/* Issue line */}
           <div className="flex items-center justify-between hairline-b pb-4">
             <span className="eyebrow">Issue 01 — Vol. 2026</span>
@@ -118,9 +128,11 @@ const LandingPage: React.FC = () => {
               </span>
 
               <h1 className="display mt-6 text-[clamp(2.75rem,7vw,5.75rem)] text-[#f4ecd8]">
-                Cut the noise.
+                <SplitReveal text="Cut the noise." />
                 <br />
-                <span className="text-[#e5c46d]">Keep the signal.</span>
+                <span className="shimmer-sweep">
+                  <SplitReveal text="Keep the signal." delay={0.35} />
+                </span>
               </h1>
 
               <p className="mt-6 max-w-xl text-lg text-[#c9bfa8] leading-relaxed">
@@ -154,20 +166,30 @@ const LandingPage: React.FC = () => {
 
               {/* Quiet social proof row */}
               <div className="mt-12 grid grid-cols-3 max-w-md gap-6">
-                {[
-                  { k: '60+', v: 'Pages of guide' },
-                  { k: '04', v: 'Core modules' },
-                  { k: '24/7', v: 'Live market data' },
-                ].map((s) => (
-                  <div key={s.v}>
-                    <div className="display text-2xl text-[#e5c46d] tabular">
-                      {s.k}
-                    </div>
-                    <div className="text-xs text-[#8a8268] mt-1 leading-tight">
-                      {s.v}
-                    </div>
+                <div>
+                  <div className="display text-2xl text-[#e5c46d]">
+                    <Counter value={60} suffix="+" />
                   </div>
-                ))}
+                  <div className="text-xs text-[#8a8268] mt-1 leading-tight">
+                    Pages of guide
+                  </div>
+                </div>
+                <div>
+                  <div className="display text-2xl text-[#e5c46d]">
+                    <Counter value={4} pad={2} />
+                  </div>
+                  <div className="text-xs text-[#8a8268] mt-1 leading-tight">
+                    Core modules
+                  </div>
+                </div>
+                <div>
+                  <div className="display text-2xl text-[#e5c46d] tabular">
+                    24/7
+                  </div>
+                  <div className="text-xs text-[#8a8268] mt-1 leading-tight">
+                    Live market data
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -178,7 +200,7 @@ const LandingPage: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="lg:col-span-5"
             >
-              <div className="relative hairline rounded-2xl bg-[#0c0a07]/80 backdrop-blur-sm overflow-hidden">
+              <TiltCard className="relative hairline rounded-2xl bg-[#0c0a07]/80 backdrop-blur-sm overflow-hidden">
                 <div className="flex items-center justify-between px-5 py-3 hairline-b">
                   <span className="eyebrow text-[#e5c46d]">Vol. 01</span>
                   <span className="eyebrow text-[#8a8268]">The Blueprint</span>
@@ -211,7 +233,7 @@ const LandingPage: React.FC = () => {
                     Get it <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
-              </div>
+              </TiltCard>
             </motion.aside>
           </div>
         </div>
@@ -239,8 +261,9 @@ const LandingPage: React.FC = () => {
       <CryptoPriceTracker />
 
       {/* ─────────── 02 · WHY ─────────── */}
-      <section id="guides" className="py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <section id="guides" className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+          <SectionWatermark n="02" align="right" />
           {SECTION_LABEL('02', 'Why Cryptonyte')}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 mb-16">
@@ -302,8 +325,9 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ─────────── 03 · WATCH ─────────── */}
-      <section id="what-is-crypto-video" className="py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <section id="what-is-crypto-video" className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+          <SectionWatermark n="03" align="left" />
           {SECTION_LABEL('03', 'Watch')}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end mb-12">
@@ -365,8 +389,9 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ─────────── 04 · MISSION ─────────── */}
-      <section id="about" className="py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <section id="about" className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+          <SectionWatermark n="04" align="right" />
           {SECTION_LABEL('04', 'Mission')}
 
           <motion.blockquote
@@ -418,8 +443,9 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ─────────── 05 · BLUEPRINT (final CTA) ─────────── */}
-      <section id="contact" className="py-24 lg:py-32">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <section id="contact" className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+          <SectionWatermark n="05" align="left" />
           {SECTION_LABEL('05', 'The Blueprint')}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
@@ -433,7 +459,7 @@ const LandingPage: React.FC = () => {
               <h2 className="display text-[clamp(2.25rem,5.5vw,4.5rem)] text-[#f4ecd8]">
                 Get the free
                 <br />
-                <span className="text-[#e5c46d]">2026 guide.</span>
+                <span className="shimmer-sweep">2026 guide.</span>
               </h2>
               <p className="mt-6 text-lg text-[#c9bfa8] max-w-xl leading-relaxed">
                 Sixty pages of plain-English crypto literacy. No email gate. No
